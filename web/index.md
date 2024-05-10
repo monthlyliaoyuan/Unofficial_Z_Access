@@ -1,10 +1,10 @@
 # 本版本发行宣言
 
-本版本是Zlibrary的非官方中国客户端，由某个初中生编写，其实十分简单。
+本版本是[Zlibrary](https://zh.z-library.se)的非官方中国客户端，由某个初中生编写，其实十分简单。
 
 ## 使用指南
 
-欢迎访问Zlibrary，充满**知识**的地方！
+* 欢迎访问Zlibrary，充满**知识**的地方！
 
 请翻到本文结尾，查看使用指南。
 
@@ -25,7 +25,6 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 理论上讲，无产阶级是中国的统治阶级。但是，中国的统治阶级到底是什么？
 
 我们看看中国名义上的最高权利机关人民代表大会吧（注意，人民代表是一个完整的名词，不能拆分）。
-
 
 <section data-role="outer" label="edit by 135editor"
     style="margin-bottom: 0px;outline: 0px;font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;letter-spacing: 0.544px;white-space: normal;background-color: rgb(255, 255, 255);visibility: visible;">
@@ -1312,7 +1311,6 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
     </section>
 </section>
 
-
 怎么就没有一个一线工农呢？这恐怕是官商大会吧。这是社会主义？
 
 所以，GFW还正当吗？反诈还正当吗？你又没有想过，卖淫，诈骗，正是资本主义（市场经济）本身的产物，现在反而成了资产阶级（或者叫官资）压迫人民自由的工具。
@@ -1330,7 +1328,7 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 
 当然，这些书，以及一些欧美台湾自由派的什么中国官员情妇新闻（真假性不知道，但是自由派不是什么好东西。就比如白纸运动，官资一压，作鸟兽散。所谓的欧美民主，列宁在《国家与革命》已经批判过了。不过中国人你先别急，你们虽然没享受到资产阶级民主，但是享受到了法西斯式民主。）共同导致了Zlib被封。但是，谁会惧怕惧怕真相呢？
 
-或者，看看这个**论坛**（也被墙了，但是我帮你过墙了）[布站](https://bu2021.xyz)（我并不完全赞同所有上面的内容，或者说，对于上面的路线斗争（大群和东风）持保留态度，但其他的我发自内心赞同！）
+或者，看看这个**论坛**（也被墙了，但是我帮你过墙了）[布站](https://bu2021.xyz)（我并不完全赞同所有上面的内容，或者说，对于上面的路线斗争（大群和东风）持保留态度）
 
 相信我，这不会浪费你的时间！
 
@@ -1358,13 +1356,19 @@ Zlib目前遭到GFW的DNS污染与SNI阻断，其挂靠在CloudFlare后面。
 
 **这部分是写给技术人员看的。**
 
-首先无法IP黑洞，因为CloudFlareCDN处理全切$30 \%$的流量。
+首先无法IP黑洞，因为CloudFlareCDN处理全切30%的流量。
 
 DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏洞，我们也许应该等待ECH在国外基本普及。
 
 目前QUIC过了3年没被封。
 
 **但是，我们在这里和GFW斗争，还不如投身革命事业，重建社会主义祖国，砸烂GFW机房！**
+
+## 安全性
+
+我是没放什么小玩意。
+
+如果你看过上面的参考资料，也会知道我没有理由放。
 
 ## 使用指南
 
@@ -1373,6 +1377,8 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 #### 请访问[Zlibrary](https://zh.z-library.se)
 
 ## 高级使用指南
+
+实际上，你给自己的chromium系浏览器传参也不是不行啦。
 
 请自行查看源码。
 
