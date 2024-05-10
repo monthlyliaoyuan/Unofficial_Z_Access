@@ -2,13 +2,14 @@ import win.ui;
 /*DSG{{*/
 mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
 mainForm.add(
-custom={cls="custom";text="自定义控件";left=1;top=0;right=755;bottom=466;ah=1;aw=1;z=1}
+custom={cls="custom";text="自定义控件";left=1;top=1;right=755;bottom=466;ah=1;aw=1;z=1}
 )
 /*}}*/
 
 var hostline='MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443';
 var QUICline='zh.z-library.se:443,bu2021.xyz:443';
-var url="https://zh.z-library.se";
+//var url="https://zh.z-library.se/";
+var url="/web/introduce.html";
 
 if(_ARGV["h"])
 {
@@ -33,9 +34,21 @@ if(_ARGV["g"]) url=_ARGV["g"];
 
 import web.view;
 var view=web.view(mainForm.custom,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
- 
-view.go(url);
+/*
+view.onNewWindow = function(Url){  
+	win.msgbox(Url,"!");
+	view.go(Url);
+	return true;
+}
+*/
 
+function WebGo(WebURL)
+{
+	view.go(WebURL);
+}
+
+
+WebGo(url);
 mainForm.show();
 return win.loopMessage();
 
