@@ -9,7 +9,9 @@ custom={cls="custom";text="自定义控件";left=1;top=1;right=755;bottom=466;ah
 var hostline='MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443';
 var QUICline='zh.z-library.se:443,bu2021.xyz:443';
 //var url="https://zh.z-library.se/";
-var url="/web/introduce.html";
+
+import wsock.tcp.simpleHttpServer; 
+var url="/web/index.html";
 
 if(_ARGV["h"])
 {
@@ -42,13 +44,9 @@ view.onNewWindow = function(Url){
 }
 */
 
-function WebGo(WebURL)
-{
-	view.go(WebURL);
-}
 
 
-WebGo(url);
+view.go(url);
 mainForm.show();
 return win.loopMessage();
 
