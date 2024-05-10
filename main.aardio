@@ -1,0 +1,18 @@
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
+mainForm.add(
+custom={cls="custom";text="自定义控件";left=1;top=0;right=755;bottom=466;ah=1;aw=1;z=1}
+)
+/*}}*/
+
+import web.view;
+var hostline='MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443';
+var QUICline='zh.z-library.se:443';
+win.msgbox('--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline,"!");
+var view=web.view(mainForm.custom,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
+ 
+view.go("https://zh.z-library.se");
+
+mainForm.show();
+return win.loopMessage();
