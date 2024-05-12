@@ -1,9 +1,7 @@
 import win.ui;
 /*DSG{{*/
 mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
-mainForm.add(
-custom={cls="custom";text="自定义控件";left=1;top=1;right=755;bottom=466;ah=1;aw=1;z=1}
-)
+mainForm.add()
 /*}}*/
 
 var hostline='MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443';
@@ -61,7 +59,7 @@ if(_ARGV["h"])
 
 
 import web.view;
-var view=web.view(mainForm.custom,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
+var view=web.view(mainForm,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
 view.go("/web/index.html");
 
 
