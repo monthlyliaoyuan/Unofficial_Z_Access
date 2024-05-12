@@ -44,11 +44,10 @@ view.onNewWindow = function(Url){
 }
 */
 
-
-
-view.go(url);
 mainForm.show();
 return win.loopMessage();
+
+view.go(url);
 
 /*You may need (from: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/network_session_configurator/common/network_switch_list.h)
 // Copyright 2017 The Chromium Authors
