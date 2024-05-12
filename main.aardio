@@ -14,7 +14,12 @@ var url="/web/index.html";
 if(_ARGV["c"]) 
 {
 	import fsys.file;
-	var cfg=fsys.file("./CMDconfig.txt");
+	
+	var cfg;
+	if(_ARGV["c"]!="")
+		cfg=fsys.file(_ARGV["c"]);
+	else
+		cfg=fsys.file("./CMDconfig.txt");
 	if(!fsys.file.is(cfg))
 	{
 		win.msgboxErr("No Config File! ","ERROR!");
@@ -29,7 +34,11 @@ if(_ARGV["d"])
 	hostline="";
 	QUICline="";
 	import fsys.file;
-	var cfg=fsys.file("./DOMAINconfig.txt");
+	var cfg;
+	if(_ARGV["d"]!="")
+		cfg=fsys.file(_ARGV["d"]);
+	else
+		cfg=fsys.file("./DOMAINconfig.txt");
 	if(!fsys.file.is(cfg))
 	{
 		win.msgboxErr("No Config File! ","ERROR!");

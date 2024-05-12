@@ -13,11 +13,11 @@
 打开后跳转到url，而不是默认开始页。
 注意：`url`必须带协议头，如：`https://1919810.com`。
 
-## `-c`
+## `-c [FILE]`
 
 使用命令行配置文件。
 
-程序会尝试读取同一目录下的`CMDconfig.txt`。
+如果有`[FILE]`，程序读取`FILE`，否则程序会尝试读取同一目录下的`CMDconfig.txt`。
 
 该文件应当有两行。
 
@@ -35,7 +35,7 @@ zh.z-library.se:443,bu2021.xyz:443
 
 根据域名进行配置，只支持挂靠`CloudFlare CDN`的网站且使用CF默认配置（**必须支持QUIC**）。
 
-程序会尝试读取同一目录下的`DOMAINconfig.txt`。
+如果有`[FILE]`，程序读取`FILE`，否则程序会尝试读取同一目录下的`DOMAINconfig.txt`。
 
 该文件的第一行是您当地可以访问的CloudFlareIP。
 
@@ -44,10 +44,33 @@ zh.z-library.se:443,bu2021.xyz:443
 以下是一个可行的配置：
 
 ```plaintext
+
 [2606:4700:3033::ac43:aa46]
+zh.z-library.se
+bu2021.xyz
+annas-archive.se
+longlivemarxleninmaoism.online
+zlib-articles.se
+zh.zlib-articles.se
+z-library.se[2606:4700:3033::ac43:aa46]
 zh.z-library.se
 bu2021.xyz
 annas-archive.se
 ```
 
-## 返回[首页](./index.html)
+# 域名添加指南
+
+如果你发现了有一个域名无法连接，就可以加到配置列表里。
+
+**注意子域名也要。**
+
+如果还不行，那就是不行，子域名不挂靠CloudFlareCDN。
+
+有问题请加issue。
+
+
+---
+
+
+
+返回[首页](./index.html)

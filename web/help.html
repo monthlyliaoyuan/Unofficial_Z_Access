@@ -6,9 +6,9 @@
 <h2 id="-"><code>-g url</code></h2>
 <p>打开后跳转到 url，而不是默认开始页。<br />
 注意：<code>url</code> 必须带协议头，如：<code>https://1919810.com</code>。</p>
-<h2 id="--"><code>-c</code></h2>
+<h2 id="--"><code>-c [FILE]</code></h2>
 <p>使用命令行配置文件。</p>
-<p>程序会尝试读取同一目录下的 <code>CMDconfig.txt</code>。</p>
+<p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>CMDconfig.txt</code>。</p>
 <p>该文件应当有两行。</p>
 <ol>
 <li><code>--host-resolver-rules</code></li>
@@ -20,13 +20,27 @@ zh.z-library.se:443,bu2021.xyz:443
 </code></pre>
 <h2 id="---"><code>-d</code></h2>
 <p>根据域名进行配置，只支持挂靠 <code>CloudFlare CDN</code> 的网站且使用 CF 默认配置（<strong>必须支持 QUIC</strong>）。</p>
-<p>程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
+<p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
 <p>该文件的第一行是您当地可以访问的 CloudFlareIP。</p>
 <p>接下来任意多行是需要启用工具的域名，尽量不要太多，多了我不知道会出什么鬼问题。</p>
 <p>以下是一个可行的配置：</p>
-<pre><code class="language-plaintext">[2606:4700:3033::ac43:aa46]
+<pre><code class="language-plaintext">
+[2606:4700:3033::ac43:aa46]
+zh.z-library.se
+bu2021.xyz
+annas-archive.se
+longlivemarxleninmaoism.online
+zlib-articles.se
+zh.zlib-articles.se
+z-library.se[2606:4700:3033::ac43:aa46]
 zh.z-library.se
 bu2021.xyz
 annas-archive.se
 </code></pre>
-<h2 id="返回首页">返回<a href="./index.html">首页</a></h2>
+<h1 id="域名添加指南">域名添加指南</h1>
+<p>如果你发现了有一个域名无法连接，就可以加到配置列表里。</p>
+<p><strong>注意子域名也要。</strong></p>
+<p>如果还不行，那就是不行，子域名不挂靠 CloudFlareCDN。</p>
+<p>有问题请加 issue。</p>
+<hr />
+<p>返回<a href="./index.html">首页</a></p>

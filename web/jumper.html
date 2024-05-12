@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+
+<h1><font color="black">请在下面键入URL，例如<a href="https://bu2021.xyz">https://bu2021.xyz</a></font></h1>
+<h1>并按下Enter。您可能需要等待，加载需要时间。</h1>
+<input onkeydown="test()" id="WebURL"/>
+ 
+<script>	
+	
+	function test() {
+		if (window.event.keyCode == 13) {//window.可以省略不写
+			var url=document.getElementById("WebURL").value;
+			location.assign(url);
+		}
+	}
+</script>
+<h1><font color="red">全世界的无产者，联合起来！</font></h1>
+回到<a href="./index.html">主页</a>
+</body>
+</html>
