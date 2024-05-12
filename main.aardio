@@ -13,15 +13,10 @@ var QUICline='zh.z-library.se:443,bu2021.xyz:443';
 import wsock.tcp.simpleHttpServer; 
 var url="/web/index.html";
 
-if(_ARGV["h"])
-{
-	win.msgbox('By Msedge Webview2 with Cmd & aardio. \r\n -h: help \r\n -------- \r\n -c use the config file config.txt under the same folder; The first line --host-resolver-rules while the second -origin-to-force-quic-on \r\n -------- \r\n -g go to the website');
-	return;
-}
 if(_ARGV["c"]) 
 {
 	import fsys.file;
-	var cfg=fsys.file("./config.txt");
+	var cfg=fsys.file("./CMDconfig.txt");
 	if(!fsys.file.is(cfg))
 	{
 		win.msgboxErr("No Config File! ","ERROR!");
@@ -31,18 +26,44 @@ if(_ARGV["c"])
 	QUICline=cfg.read();
 	cfg.close();
 }
+if(_ARGV["d"])
+{
+	hostline="";
+	QUICline="";
+	import fsys.file;
+	var cfg=fsys.file("./DOMAINconfig.txt");
+	if(!fsys.file.is(cfg))
+	{
+		win.msgboxErr("No Config File! ","ERROR!");
+		return;
+	}
+	var CFIP=cfg.read();
+	var d=CFIP;
+
+	while(1)
+	{
+		d=cfg.read();
+		if(!d) break;
+		
+		hostline=hostline+"MAP "+d+" "+CFIP+":443,";
+		QUICline=QUICline+d+":443,";
+	}
+	hostline=string.slice(hostline,1,-2,true);
+	QUICline=string.slice(QUICline,1,-2,true);
+
+	cfg.close();
+}
 if(_ARGV["g"]) url=_ARGV["g"];
+if(_ARGV["h"])
+{
+	url="/help.html";
+}
 
 
 import web.view;
 var view=web.view(mainForm.custom,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
-/*
-view.onNewWindow = function(Url){  
-	win.msgbox(Url,"!");
-	view.go(Url);
-	return true;
-}
-*/
+view.go("/web/index.html");
+
 
 mainForm.show();
 view.go(url);

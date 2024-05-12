@@ -1,0 +1,32 @@
+<h1 id="命令行参数帮助">命令行参数帮助</h1>
+<p>鉴于本应用名字较长，我强烈建议您把他的名字改短一点，比如 <code>zlib.exe</code>。</p>
+<p>默认接下来您已经进行了重命名。</p>
+<h2 id=""><code>-h</code></h2>
+<p>打开帮助，也就是显示此文件。</p>
+<h2 id="-"><code>-g url</code></h2>
+<p>打开后跳转到 url，而不是默认开始页。<br />
+注意：<code>url</code> 必须带协议头，如：<code>https://1919810.com</code>。</p>
+<h2 id="--"><code>-c</code></h2>
+<p>使用命令行配置文件。</p>
+<p>程序会尝试读取同一目录下的 <code>CMDconfig.txt</code>。</p>
+<p>该文件应当有两行。</p>
+<ol>
+<li><code>--host-resolver-rules</code></li>
+<li><code>-origin-to-force-quic-on</code></li>
+</ol>
+<p>下面是一个可行的配置，用于访问'zh.z-library.se'于 <code>bu2021.xyz</code>。</p>
+<pre><code class="language-text">MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443
+zh.z-library.se:443,bu2021.xyz:443
+</code></pre>
+<h2 id="---"><code>-d</code></h2>
+<p>根据域名进行配置，只支持挂靠 <code>CloudFlare CDN</code> 的网站且使用 CF 默认配置（<strong>必须支持 QUIC</strong>）。</p>
+<p>程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
+<p>该文件的第一行是您当地可以访问的 CloudFlareIP。</p>
+<p>接下来任意多行是需要启用工具的域名，尽量不要太多，多了我不知道会出什么鬼问题。</p>
+<p>以下是一个可行的配置：</p>
+<pre><code class="language-plaintext">[2606:4700:3033::ac43:aa46]
+zh.z-library.se
+bu2021.xyz
+annas-archive.se
+</code></pre>
+<h2 id="返回首页">返回<a href="./index.html">首页</a></h2>
