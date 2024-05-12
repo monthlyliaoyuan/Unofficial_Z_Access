@@ -24,7 +24,7 @@
 1. `--host-resolver-rules`
 2. `-origin-to-force-quic-on`
 
-下面是一个可行的配置，用于访问'zh.z-library.se'于`bu2021.xyz`。
+下面是一个可行的配置，用于访问`zh.z-library.se'`与`bu2021.xyz`。
 
 ```text
 MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443
