@@ -22,6 +22,7 @@ zh.z-library.se:443,bu2021.xyz:443
 <p>根据域名进行配置，只支持挂靠 <code>CloudFlare CDN</code> 的网站且使用 CF 默认配置（<strong>必须支持 QUIC</strong>）。</p>
 <p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
 <p>该文件的第一行是您当地可以访问的 CloudFlareIP。</p>
+<p>你可以到<a href="https://www.cloudflare-cn.com/ips/">这里</a>寻找一个 CloudFlareCDN 的 IP。并请确保 ping 得通。（一般可以）</p>
 <p>接下来任意多行是需要启用工具的域名，尽量不要太多，多了我不知道会出什么鬼问题。</p>
 <p>以下是一个可行的配置：</p>
 <pre><code class="language-plaintext">
@@ -32,7 +33,7 @@ annas-archive.se
 longlivemarxleninmaoism.online
 zlib-articles.se
 zh.zlib-articles.se
-z-library.se[2606:4700:3033::ac43:aa46]
+z-library.se
 zh.z-library.se
 bu2021.xyz
 annas-archive.se
@@ -41,6 +42,71 @@ annas-archive.se
 <p>如果你发现了有一个域名无法连接，就可以加到配置列表里。</p>
 <p><strong>注意子域名也要。</strong></p>
 <p>如果还不行，那就是不行，子域名不挂靠 CloudFlareCDN。</p>
-<p>有问题请加 issue。</p>
+<p>如果你想做别的网站尝试，请使用 CMDconfig。</p>
+<p>或者自己编写命令行。请参考：Chromium NewWork Configs Codes：</p>
+<pre><code class="language-java">// from: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/network_session_configurator/common/network_switch_list.h
+// Copyright 2017 The Chromium Authors
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+// This file deliberately has no header guard, as it's inlined in a number of
+// files.
+// no-include-guard-because-multiply-included
+// Disables the QUIC protocol.
+NETWORK_SWITCH(kDisableQuic, &quot;disable-quic&quot;)
+// Disables the HTTP/2 protocol.
+NETWORK_SWITCH(kDisableHttp2, &quot;disable-http2&quot;)
+// Enables Alternate-Protocol when the port is user controlled (&gt; 1024).
+NETWORK_SWITCH(kEnableUserAlternateProtocolPorts,
+               &quot;enable-user-controlled-alternate-protocol-ports&quot;)
+// Enables the QUIC protocol.  This is a temporary testing flag.
+NETWORK_SWITCH(kEnableQuic, &quot;enable-quic&quot;)
+// Ignores certificate-related errors.
+NETWORK_SWITCH(kIgnoreCertificateErrors, &quot;ignore-certificate-errors&quot;)
+// Specifies a comma separated list of host-port pairs to force use of QUIC on.
+NETWORK_SWITCH(kOriginToForceQuicOn, &quot;origin-to-force-quic-on&quot;)
+// Disables known-root checks for outgoing WebTransport connections.
+NETWORK_SWITCH(kWebTransportDeveloperMode, &quot;webtransport-developer-mode&quot;)
+// Specifies a comma separated list of QUIC connection options to send to
+// the server.
+NETWORK_SWITCH(kQuicConnectionOptions, &quot;quic-connection-options&quot;)
+// Specifies a comma separated list of QUIC client connection options.
+NETWORK_SWITCH(kQuicClientConnectionOptions, &quot;quic-client-connection-options&quot;)
+// Specifies the maximum length for a QUIC packet.
+NETWORK_SWITCH(kQuicMaxPacketLength, &quot;quic-max-packet-length&quot;)
+// Specifies the version of QUIC to use.
+NETWORK_SWITCH(kQuicVersion, &quot;quic-version&quot;)
+// Allows for forcing socket connections to http/https to use fixed ports.
+NETWORK_SWITCH(kTestingFixedHttpPort, &quot;testing-fixed-http-port&quot;)
+NETWORK_SWITCH(kTestingFixedHttpsPort, &quot;testing-fixed-https-port&quot;)
+// Comma-separated list of rules that control how hostnames are mapped.
+//
+// For example:
+//    &quot;MAP * 127.0.0.1&quot; --&gt; Forces all hostnames to be mapped to 127.0.0.1
+//    &quot;MAP *.google.com proxy&quot; --&gt; Forces all google.com subdomains to be
+//                                 resolved to &quot;proxy&quot;.
+//    &quot;MAP test.com [::1]:77 --&gt; Forces &quot;test.com&quot; to resolve to IPv6 loopback.
+//                               Will also force the port of the resulting
+//                               socket address to be 77.
+//    &quot;MAP * baz, EXCLUDE www.google.com&quot; --&gt; Remaps everything to &quot;baz&quot;,
+//                                            except for &quot;www.google.com&quot;.
+//
+// These mappings apply to the endpoint host in a net::URLRequest (the TCP
+// connect and host resolver in a direct connection, and the CONNECT in an http
+// proxy connection, and the endpoint host in a SOCKS proxy connection).
+//
+// TODO(mmenke): Can we just remove this?  host-resolver-rules is more generally
+// useful.
+NETWORK_SWITCH(kHostRules, &quot;host-rules&quot;)
+// Enable &quot;greasing&quot; HTTP/2 frame types, that is, sending frames of reserved
+// types.  See https://tools.ietf.org/html/draft-bishop-httpbis-grease-00 for
+// more detail.
+NETWORK_SWITCH(kHttp2GreaseFrameType, &quot;http2-grease-frame-type&quot;)
+// If request has no body, close the stream not by setting END_STREAM flag on
+// the HEADERS frame, but by sending an empty DATA frame with END_STREAM
+// afterwards.  Only affects HTTP/2 request streams, not proxy or bidirectional
+// streams.
+NETWORK_SWITCH(kHttp2EndStreamWithDataFrame, &quot;http2-end-stream-with-data-frame&quot;)
+</code></pre>
+<p>有问题请加 Github issue。</p>
 <hr />
 <p>返回<a href="./index.html">首页</a></p>
