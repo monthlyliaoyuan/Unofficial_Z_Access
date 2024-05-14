@@ -1,2 +1,2 @@
-MAP www.change.org 104.17.89.51:443
-www.change.org:443
+MAP libgen.rs 193.218.118.42:443
+libgen.rs:443

@@ -19,7 +19,7 @@ if(_ARGV["c"])
 	if(_ARGV["c"]!="")
 		cfg=fsys.file(_ARGV["c"]);
 	else
-		cfg=fsys.file("./CMDconfig.txt");
+		cfg=fsys.file("CMDconfig.txt");
 	if(!fsys.file.is(cfg))
 	{
 		win.msgboxErr("No Config File! ","ERROR!");
@@ -38,7 +38,7 @@ if(_ARGV["d"])
 	if(_ARGV["d"]!="")
 		cfg=fsys.file(_ARGV["d"]);
 	else
-		cfg=fsys.file("./DOMAINconfig.txt");
+		cfg=fsys.file("DOMAINconfig.txt");
 	if(!fsys.file.is(cfg))
 	{
 		win.msgboxErr("No Config File! ","ERROR!");
