@@ -33,20 +33,21 @@ zh.z-library.se:443,bu2021.xyz:443
 
 ## `-d`
 
-根据域名进行配置，只支持挂靠`CloudFlare CDN`的网站且使用CF默认配置（**必须支持QUIC**）。
+根据域名进行配置，要求IP支持QUIC，且能访问（一般指ping得通）（**必须支持QUIC**）。
 
 如果有`[FILE]`，程序读取`FILE`，否则程序会尝试读取同一目录下的`DOMAINconfig.txt`。
 
-该文件的第一行是您当地可以访问的CloudFlareIP。
+我们通过空行来分割多个IP的配置，每份配置的第一行是该IP（支持IPv6），接下来若干行是你的域名（不包含协议头，如`https://`）。**注意，该方法对域名极其敏感，子域名是不一样的域名。如`www.pixiv.net`和`pixiv.net`不一样，`z-library.se`和`zh.z-library.se`不一样，*请注意。***
 
-你可以到[这里](https://www.cloudflare-cn.com/ips/)寻找一个CloudFlareCDN的IP。并请确保ping得通。（一般可以）
+洁净域名IP查询：[Whois365](https://www.whois365.com/)（非广告）
 
-接下来任意多行是需要启用工具的域名，尽量不要太多，多了我不知道会出什么鬼问题。
+以CloudFlare为例你可以到[这里](https://www.cloudflare-cn.com/ips/)寻找一个CloudFlareCDN的IP。并请确保ping得通。（一般可以）
 
-以下是一个可行的配置：
+接下来任意多行是需要启用工具的域名，尽量不要太多，Windows命令行的长度是有限制的。（好像是$8192$个字符）
+
+以下是一个可行的配置：（这两个IP分别是CloudFlare的IPv4与IPv6之一，为了演示分开）。
 
 ```plaintext
-
 [2606:4700:3033::ac43:aa46]
 zh.z-library.se
 bu2021.xyz
@@ -54,11 +55,14 @@ annas-archive.se
 longlivemarxleninmaoism.online
 zlib-articles.se
 zh.zlib-articles.se
-z-library.se
-zh.z-library.se
-bu2021.xyz
-annas-archive.se
+
+172.64.145.17
+www.pixiv.net
 ```
+
+## `-o`
+
+页面将显示打开此次程序的浏览器命令行参数。
 
 # 域名添加指南
 
@@ -66,9 +70,9 @@ annas-archive.se
 
 **注意子域名也要。**
 
-如果还不行，那就是不行，子域名不挂靠CloudFlareCDN。
+如果还不行，那就是不行，子域名不支持QUIC。
 
-如果你想做别的网站尝试，请使用CMDconfig。
+如果出现HTTP协议，或者非标准端口，请采用`CMDconfig`
 
 或者自己编写命令行。请参考：Chromium NewWork Configs Codes：
 
@@ -136,7 +140,6 @@ NETWORK_SWITCH(kHttp2GreaseFrameType, "http2-grease-frame-type")
 // streams.
 NETWORK_SWITCH(kHttp2EndStreamWithDataFrame, "http2-end-stream-with-data-frame")
 ```
-
 
 有问题请加Github issue。
 

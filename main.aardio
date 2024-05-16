@@ -44,19 +44,24 @@ if(_ARGV["d"])
 		win.msgboxErr("No Config File! ","ERROR!");
 		return;
 	}
-	var CFIP=cfg.read();
-	var d=CFIP;
 
 	while(1)
 	{
-		d=cfg.read();
-		if(!d) break;
-		
-		hostline=hostline+"MAP "+d+" "+CFIP+":443,";
-		QUICline=QUICline+d+":443,";
+		var IP=cfg.read();
+		var d=IP;
+		while(1)
+		{
+			d=cfg.read();
+			if(d=="") break 1;
+			else if(!d) break 2;
+			hostline=hostline+"MAP "+d+" "+IP+":443,";
+			QUICline=QUICline+d+":443,";
+		}	
 	}
+	
 	hostline=string.slice(hostline,1,-2,true);
 	QUICline=string.slice(QUICline,1,-2,true);
+	
 
 	cfg.close();
 }
@@ -66,14 +71,17 @@ if(_ARGV["h"])
 	url="/help.html";
 }
 
-
 import web.view;
 var view=web.view(mainForm,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
 view.go("/web/index.html");
 
-
 mainForm.show();
-view.go(url);
+if(_ARGV["o"])
+{
+	//shit mountain code
+	view.html="<!doctype html><html><head></head><body><p>"+'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
+}
+else view.go(url);
 return win.loopMessage();
 
 /* You may need: 

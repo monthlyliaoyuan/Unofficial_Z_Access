@@ -19,30 +19,31 @@
 zh.z-library.se:443,bu2021.xyz:443
 </code></pre>
 <h2 id="---"><code>-d</code></h2>
-<p>根据域名进行配置，只支持挂靠 <code>CloudFlare CDN</code> 的网站且使用 CF 默认配置（<strong>必须支持 QUIC</strong>）。</p>
+<p>根据域名进行配置，要求 IP 支持 QUIC，且能访问（一般指 ping 得通）（<strong>必须支持 QUIC</strong>）。</p>
 <p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
-<p>该文件的第一行是您当地可以访问的 CloudFlareIP。</p>
-<p>你可以到<a href="https://www.cloudflare-cn.com/ips/">这里</a>寻找一个 CloudFlareCDN 的 IP。并请确保 ping 得通。（一般可以）</p>
-<p>接下来任意多行是需要启用工具的域名，尽量不要太多，多了我不知道会出什么鬼问题。</p>
-<p>以下是一个可行的配置：</p>
-<pre><code class="language-plaintext">
-[2606:4700:3033::ac43:aa46]
+<p>我们通过空行来分割多个 IP 的配置，每份配置的第一行是该 IP（支持 IPv6），接下来若干行是你的域名（不包含协议头，如 <code>https://</code>）。<strong>注意，该方法对域名极其敏感，子域名是不一样的域名。如 <code>www.pixiv.net</code> 和 <code>pixiv.net</code> 不一样，<code>z-library.se</code> 和 <code>zh.z-library.se</code> 不一样，<em>请注意。</em></strong></p>
+<p>洁净域名 IP 查询：<a href="https://www.whois365.com/">Whois365</a>（非广告）</p>
+<p>以 CloudFlare 为例你可以到<a href="https://www.cloudflare-cn.com/ips/">这里</a>寻找一个 CloudFlareCDN 的 IP。并请确保 ping 得通。（一般可以）</p>
+<p>接下来任意多行是需要启用工具的域名，尽量不要太多，Windows 命令行的长度是有限制的。（好像是<span class="language-math">8192</span>个字符）</p>
+<p>以下是一个可行的配置：（这两个 IP 分别是 CloudFlare 的 IPv4 与 IPv6 之一，为了演示分开）。</p>
+<pre><code class="language-plaintext">[2606:4700:3033::ac43:aa46]
 zh.z-library.se
 bu2021.xyz
 annas-archive.se
 longlivemarxleninmaoism.online
 zlib-articles.se
 zh.zlib-articles.se
-z-library.se
-zh.z-library.se
-bu2021.xyz
-annas-archive.se
+
+172.64.145.17
+www.pixiv.net
 </code></pre>
+<h2 id="----"><code>-o</code></h2>
+<p>页面将显示打开此次程序的浏览器命令行参数。</p>
 <h1 id="域名添加指南">域名添加指南</h1>
 <p>如果你发现了有一个域名无法连接，就可以加到配置列表里。</p>
 <p><strong>注意子域名也要。</strong></p>
-<p>如果还不行，那就是不行，子域名不挂靠 CloudFlareCDN。</p>
-<p>如果你想做别的网站尝试，请使用 CMDconfig。</p>
+<p>如果还不行，那就是不行，子域名不支持 QUIC。</p>
+<p>如果出现 HTTP 协议，或者非标准端口，请采用 <code>CMDconfig</code></p>
 <p>或者自己编写命令行。请参考：Chromium NewWork Configs Codes：</p>
 <pre><code class="language-java">// from: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/network_session_configurator/common/network_switch_list.h
 // Copyright 2017 The Chromium Authors

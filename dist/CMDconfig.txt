@@ -1,2 +1,2 @@
-MAP libgen.rs 193.218.118.42:443
-libgen.rs:443
+MAP duckduckgo.com 52.250.42.157:443
+duckduckgo.com:443
