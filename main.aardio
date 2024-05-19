@@ -77,7 +77,7 @@ if(_ARGV["d"])
 	
 	CMDLine="";
 	if(HostResolverLine!="") CMDLine=CMDLine+'--host-resolver-rules="'+HostResolverLine+'" ';
-	if(QUICline!="") CMDLine=CMDLine+'-origin-to-force-quic-on='+CMDLine+' ';
+	if(QUICLine!="") CMDLine=CMDLine+'-origin-to-force-quic-on='+QUICLine+' ';
 	if(HostLine!="") CMDLine=CMDLine+'--host-rules="'+HostLine+'" --ignore-certificate-errors ';
 	
 	if(CMDLine!="") CMDLine=string.slice(CMDLine,1,-2,true);
