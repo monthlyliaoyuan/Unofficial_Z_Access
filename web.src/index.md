@@ -39,6 +39,10 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 + [共和国的历程](https://zh.z-library.se/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html)
 + [文革与改开](https://zh.z-library.se/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html)
 
+大群的报刊（mediafire上的，其暂未被封锁，但使用cloudflareCDN，可以使用同样的方法解开，见**高级使用指南**）
+
++ [燎原月刊](https://www.mediafire.com/folder/19inu1mna8ioz)
+
 （我并不是说这些书上的内容都是完全对的，但是，这些书的作者的立场我是认同的。也许会出现一些逻辑错误，乃至事实错误，但是立场我是认同的，观点大部分是认同的）
 
 或者，看看这个**论坛**（也被墙了，但是我帮你过墙了）[布站](https://bu2021.xyz)（上面的内容是一个大群里发出的，所以作者繁杂，我并不赞同所有内容，不排除有些作者素质仍较低）
@@ -49,6 +53,10 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 
 人家百度网盘Doc88这种收费的文件网站上有多少没有得到许可的内容？为什么这些大资本没管呢？
 
+### 关于犯罪
+
+或许你可能会说，GFW阻止了电信诈骗与卖淫等，但是，到底是什么导致了电诈和黄色呢？
+
 ## 实现原理
 
 Zlib目前遭到GFW的DNS污染与SNI阻断，其挂靠在CloudFlare后面。
@@ -56,6 +64,10 @@ Zlib目前遭到GFW的DNS污染与SNI阻断，其挂靠在CloudFlare后面。
 我们通过浏览器内改Host来过DNS污染，通过HTTP3QUIC来过SNI阻断。
 
 理论上走CF的都可以这么干。
+
+我再做了一个丢弃sni的功能适配，测试解开了`wikipedia.org`，`torproject.org`, `imgur.com`（主域名，底下一堆cdn和js文件也被墙了，没空一个一个测试）。
+
+接下来看看ECH能不能普及海外。
 
 ## 稳定性
 
@@ -79,17 +91,13 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 #### 请访问[Zlibrary](https://zh.z-library.se)
 
-注意你也可以访问其他网址，详细请见[help.html](./help.html)
-
 或者自己去[搜](https://cn.bing.com)个网站玩玩
 
 #### 或者使用[跳转](./jumper.html)
 
 ## 高级使用指南
 
-实际上，你给自己的chromium系浏览器传参也不是不行啦。
-
-请自行查看源码，找到自己的chromium系浏览器地址，再该目录下打开cmd，确保所有浏览器窗口（以及后台进程）关闭后，传参打开浏览器愉快上网。
+[help.html](./help.html)
 
 源码托管于github上。
 

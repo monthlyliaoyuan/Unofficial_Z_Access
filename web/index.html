@@ -25,15 +25,23 @@
 <li><a href="https://zh.z-library.se/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html">共和国的历程</a></li>
 <li><a href="https://zh.z-library.se/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html">文革与改开</a></li>
 </ul>
+<p>大群的报刊（mediafire 上的，其暂未被封锁，但使用 cloudflareCDN，可以使用同样的方法解开，见<strong>高级使用指南</strong>）</p>
+<ul>
+<li><a href="https://www.mediafire.com/folder/19inu1mna8ioz">燎原月刊</a></li>
+</ul>
 <p>（我并不是说这些书上的内容都是完全对的，但是，这些书的作者的立场我是认同的。也许会出现一些逻辑错误，乃至事实错误，但是立场我是认同的，观点大部分是认同的）</p>
 <p>或者，看看这个<strong>论坛</strong>（也被墙了，但是我帮你过墙了）<a href="https://bu2021.xyz">布站</a>（上面的内容是一个大群里发出的，所以作者繁杂，我并不赞同所有内容，不排除有些作者素质仍较低）</p>
 <p>相信我，这不会浪费你的时间！</p>
 <p>上面你也许能找到关于版权法的论述，看看知网，看看天下霸唱侵权自己的作品鬼吹灯。</p>
 <p>人家百度网盘 Doc88 这种收费的文件网站上有多少没有得到许可的内容？为什么这些大资本没管呢？</p>
+<h3 id="关于犯罪">关于犯罪</h3>
+<p>或许你可能会说，GFW 阻止了电信诈骗与卖淫等，但是，到底是什么导致了电诈和黄色呢？</p>
 <h2 id="实现原理">实现原理</h2>
 <p>Zlib 目前遭到 GFW 的 DNS 污染与 SNI 阻断，其挂靠在 CloudFlare 后面。</p>
 <p>我们通过浏览器内改 Host 来过 DNS 污染，通过 HTTP3QUIC 来过 SNI 阻断。</p>
 <p>理论上走 CF 的都可以这么干。</p>
+<p>我再做了一个丢弃 sni 的功能适配，测试解开了 <code>wikipedia.org</code>，<code>torproject.org</code>, <code>imgur.com</code>（主域名，底下一堆 cdn 和 js 文件也被墙了，没空一个一个测试）。</p>
+<p>接下来看看 ECH 能不能普及海外。</p>
 <h2 id="稳定性">稳定性</h2>
 <p><strong>这部分是写给技术人员看的。</strong></p>
 <p>首先无法 IP 黑洞，因为 CloudFlareCDN 处理全切 30% 的流量。</p>
@@ -45,12 +53,10 @@
 <h2 id="使用指南-">使用指南</h2>
 <p>好的，到了这里。</p>
 <h4 id="请访问Zlibrary">请访问 <a href="https://zh.z-library.se">Zlibrary</a></h4>
-<p>注意你也可以访问其他网址，详细请见 <a href="./help.html">help.html</a></p>
 <p>或者自己去<a href="https://cn.bing.com">搜</a>个网站玩玩</p>
 <h4 id="或者使用跳转">或者使用<a href="./jumper.html">跳转</a></h4>
 <h2 id="高级使用指南">高级使用指南</h2>
-<p>实际上，你给自己的 chromium 系浏览器传参也不是不行啦。</p>
-<p>请自行查看源码，找到自己的 chromium 系浏览器地址，再该目录下打开 cmd，确保所有浏览器窗口（以及后台进程）关闭后，传参打开浏览器愉快上网。</p>
+<p><a href="./help.html">help.html</a></p>
 <p>源码托管于 github 上。</p>
 <h2 id="欠你的表">欠你的表</h2>
 <table>

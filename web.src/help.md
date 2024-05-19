@@ -1,3 +1,11 @@
+# 访问更多域名（非专业人员）
+
+如果你是从github直接下载的release，exe同级目录下应该提供了`DragTheDomainConfigFileHere.bat`。
+
+这会使用一个我自用的配置文件，也就是同目录下的`DOMAINconfig.txt`。这样可以访问更多网站，然后你可以试试走[跳转](./jumper.html)，注意其对地址极其敏感。
+
+对于该文件`DOMAINconfig.txt`的编辑，请往下翻。
+
 # 命令行参数帮助
 
 鉴于本应用名字较长，我强烈建议您把他的名字改短一点，比如`zlib.exe`。
@@ -19,16 +27,10 @@
 
 如果有`[FILE]`，程序读取`FILE`，否则程序会尝试读取同一目录下的`CMDconfig.txt`。
 
-该文件应当有两行。
-
-1. `--host-resolver-rules`
-2. `-origin-to-force-quic-on`
-
-下面是一个可行的配置，用于访问`zh.z-library.se'`与`bu2021.xyz`。
+该文件包含命令行。（通常用于开发人员）
 
 ```text
-MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443
-zh.z-library.se:443,bu2021.xyz:443
+--host-resolver-rules="MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443" -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
 ```
 
 ## `-d`
@@ -39,11 +41,14 @@ zh.z-library.se:443,bu2021.xyz:443
 
 我们通过空行来分割多个IP的配置，每份配置的第一行是该IP（支持IPv6），接下来若干行是你的域名（不包含协议头，如`https://`）。**注意，该方法对域名极其敏感，子域名是不一样的域名。如`www.pixiv.net`和`pixiv.net`不一样，`z-library.se`和`zh.z-library.se`不一样，*请注意。***
 
-洁净域名IP查询：[Whois365](https://www.whois365.com/)（非广告）
-
-以CloudFlare为例你可以到[这里](https://www.cloudflare-cn.com/ips/)寻找一个CloudFlareCDN的IP。并请确保ping得通。（一般可以）
+由于`-origin-to-force-quic-on`不支持通配符，所以除非你理解这个程序在干什么，不建议使用类似`*.114514.com`之类的通配符。
 
 接下来任意多行是需要启用工具的域名，尽量不要太多，Windows命令行的长度是有限制的。（好像是$8192$个字符）
+
+这个域名有两个工具选择，QUIC和丢弃sni。
+
++ 如果是QUIC，直接写上来。
++ 如果是丢弃sni，在行首加上`^`。（这是因为严格上来讲丢弃sni是非正常做法，所以使用特殊标识）
 
 以下是一个可行的配置：（这两个IP分别是CloudFlare的IPv4与IPv6之一，为了演示分开）。
 
@@ -58,19 +63,46 @@ zh.zlib-articles.se
 
 172.64.145.17
 www.pixiv.net
+
+116.202.120.165
+^www.torproject.org
 ```
 
 ## `-o`
 
 页面将显示打开此次程序的浏览器命令行参数。
 
-# 域名添加指南
+# 域名添加与访问指南
 
-如果你发现了有一个域名无法连接，就可以加到配置列表里。
+如果你发现了有一个域名无法连接，可以尝试配置。
+
+***Uncompleted***
+
+## 首先你要找到域名对应的IP
+
+洁净域名IP查询：[Whois365](https://www.whois365.com/)（非广告）
+
+接下来，确保ping通这个IP（请自行查找ping的方式）。
+
+或者，如果你明确该域名使用了cdn，可以尝试自选ip。
+
+以CloudFlare为例你可以到[这里](https://www.cloudflare-cn.com/ips/)寻找一个CloudFlareCDN的IP。并请确保ping得通。（一般可以）
+
+## 明确过墙的方式
+
+这里有两种方式：QUIC与丢弃SNI。
+
+一一尝试。
+
+## 访问域名
+
+注意，当你跳转的时候，对域名和协议极其敏感。
 
 **注意子域名也要。**
 
-如果还不行，那就是不行，子域名不支持QUIC。
+**如果还不行，那就是不行。**
+
+## 其他情况
 
 如果出现HTTP协议，或者非标准端口，请采用`CMDconfig`
 

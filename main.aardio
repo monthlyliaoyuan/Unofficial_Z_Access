@@ -4,8 +4,10 @@ mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
 mainForm.add()
 /*}}*/
 
-var hostline='MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443';
-var QUICline='zh.z-library.se:443,bu2021.xyz:443';
+var HostResolverLine="";
+var QUICLine="";
+var HostLine="";
+var CMDLine='--host-resolver-rules="MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443" -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443';
 //var url="https://zh.z-library.se/";
 
 import wsock.tcp.simpleHttpServer; 
@@ -25,14 +27,13 @@ if(_ARGV["c"])
 		win.msgboxErr("No Config File! ","ERROR!");
 		return;
 	}
-	hostline=cfg.read();
-	QUICline=cfg.read();
+	CMDLine=cfg.read();
 	cfg.close();
 }
 if(_ARGV["d"])
 {
-	hostline="";
-	QUICline="";
+	HostResolverLine="";
+	QUICLine="";
 	import fsys.file;
 	var cfg;
 	if(_ARGV["d"]!="")
@@ -54,16 +55,32 @@ if(_ARGV["d"])
 			d=cfg.read();
 			if(d=="") break 1;
 			else if(!d) break 2;
-			hostline=hostline+"MAP "+d+" "+IP+":443,";
-			QUICline=QUICline+d+":443,";
+			
+			if(string.unpack(d,1,1)==string.unpack("^"))
+			{
+				d=string.slice(d,2,-1,true);
+				HostLine=HostLine+"MAP "+d+" "+IP+",";
+			}
+			else
+			{
+				HostResolverLine=HostResolverLine+"MAP "+d+" "+IP+":443,";
+				QUICLine=QUICLine+d+":443,";
+			}
 		}	
 	}
 	
-	hostline=string.slice(hostline,1,-2,true);
-	QUICline=string.slice(QUICline,1,-2,true);
-	
-
 	cfg.close();
+	
+	if(HostResolverLine!="") HostResolverLine=string.slice(HostResolverLine,1,-2,true);
+	if(QUICLine!="") QUICLine=string.slice(QUICLine,1,-2,true);
+	if(HostLine!="") HostLine=string.slice(HostLine,1,-2,true);
+	
+	CMDLine="";
+	if(HostResolverLine!="") CMDLine=CMDLine+'--host-resolver-rules="'+HostResolverLine+'" ';
+	if(QUICline!="") CMDLine=CMDLine+'-origin-to-force-quic-on='+CMDLine+' ';
+	if(HostLine!="") CMDLine=CMDLine+'--host-rules="'+HostLine+'" --ignore-certificate-errors ';
+	
+	if(CMDLine!="") CMDLine=string.slice(CMDLine,1,-2,true);
 }
 if(_ARGV["g"]) url=_ARGV["g"];
 if(_ARGV["h"])
@@ -72,14 +89,15 @@ if(_ARGV["h"])
 }
 
 import web.view;
-var view=web.view(mainForm,0,'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline);
+if(string.len(CMDLine)>=8192) win.msgbox("Too long CMDLine, and this may cause Error. ","Warning");
+var view=web.view(mainForm,0,CMDLine);
 view.go("/web/index.html");
 
 mainForm.show();
 if(_ARGV["o"])
 {
 	//shit mountain code
-	view.html="<!doctype html><html><head></head><body><p>"+'--host-resolver-rules="'+hostline+'" -origin-to-force-quic-on='+QUICline+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
+	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
 }
 else view.go(url);
 return win.loopMessage();

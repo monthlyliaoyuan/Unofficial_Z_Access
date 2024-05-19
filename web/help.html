@@ -1,3 +1,7 @@
+<h1 id="访问更多域名-非专业人员-">访问更多域名（非专业人员）</h1>
+<p>如果你是从 github 直接下载的 release，exe 同级目录下应该提供了 <code>DragTheDomainConfigFileHere.bat</code>。</p>
+<p>这会使用一个我自用的配置文件，也就是同目录下的 <code>DOMAINconfig.txt</code>。这样可以访问更多网站，然后你可以试试走<a href="./jumper.html">跳转</a>，注意其对地址极其敏感。</p>
+<p>对于该文件 <code>DOMAINconfig.txt</code> 的编辑，请往下翻。</p>
 <h1 id="命令行参数帮助">命令行参数帮助</h1>
 <p>鉴于本应用名字较长，我强烈建议您把他的名字改短一点，比如 <code>zlib.exe</code>。</p>
 <p>默认接下来您已经进行了重命名。</p>
@@ -9,22 +13,20 @@
 <h2 id="--"><code>-c [FILE]</code></h2>
 <p>使用命令行配置文件。</p>
 <p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>CMDconfig.txt</code>。</p>
-<p>该文件应当有两行。</p>
-<ol>
-<li><code>--host-resolver-rules</code></li>
-<li><code>-origin-to-force-quic-on</code></li>
-</ol>
-<p>下面是一个可行的配置，用于访问 <code>zh.z-library.se'</code> 与 <code>bu2021.xyz</code>。</p>
-<pre><code class="language-text">MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443
-zh.z-library.se:443,bu2021.xyz:443
+<p>该文件包含命令行。（通常用于开发人员）</p>
+<pre><code class="language-text">--host-resolver-rules=&quot;MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443&quot; -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
 </code></pre>
 <h2 id="---"><code>-d</code></h2>
 <p>根据域名进行配置，要求 IP 支持 QUIC，且能访问（一般指 ping 得通）（<strong>必须支持 QUIC</strong>）。</p>
 <p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>DOMAINconfig.txt</code>。</p>
 <p>我们通过空行来分割多个 IP 的配置，每份配置的第一行是该 IP（支持 IPv6），接下来若干行是你的域名（不包含协议头，如 <code>https://</code>）。<strong>注意，该方法对域名极其敏感，子域名是不一样的域名。如 <code>www.pixiv.net</code> 和 <code>pixiv.net</code> 不一样，<code>z-library.se</code> 和 <code>zh.z-library.se</code> 不一样，<em>请注意。</em></strong></p>
-<p>洁净域名 IP 查询：<a href="https://www.whois365.com/">Whois365</a>（非广告）</p>
-<p>以 CloudFlare 为例你可以到<a href="https://www.cloudflare-cn.com/ips/">这里</a>寻找一个 CloudFlareCDN 的 IP。并请确保 ping 得通。（一般可以）</p>
+<p>由于 <code>-origin-to-force-quic-on</code> 不支持通配符，所以除非你理解这个程序在干什么，不建议使用类似 <code>*.114514.com</code> 之类的通配符。</p>
 <p>接下来任意多行是需要启用工具的域名，尽量不要太多，Windows 命令行的长度是有限制的。（好像是<span class="language-math">8192</span>个字符）</p>
+<p>这个域名有两个工具选择，QUIC 和丢弃 sni。</p>
+<ul>
+<li>如果是 QUIC，直接写上来。</li>
+<li>如果是丢弃 sni，在行首加上 <code>^</code>。（这是因为严格上来讲丢弃 sni 是非正常做法，所以使用特殊标识）</li>
+</ul>
 <p>以下是一个可行的配置：（这两个 IP 分别是 CloudFlare 的 IPv4 与 IPv6 之一，为了演示分开）。</p>
 <pre><code class="language-plaintext">[2606:4700:3033::ac43:aa46]
 zh.z-library.se
@@ -36,13 +38,28 @@ zh.zlib-articles.se
 
 172.64.145.17
 www.pixiv.net
+
+116.202.120.165
+^www.torproject.org
 </code></pre>
 <h2 id="----"><code>-o</code></h2>
 <p>页面将显示打开此次程序的浏览器命令行参数。</p>
-<h1 id="域名添加指南">域名添加指南</h1>
-<p>如果你发现了有一个域名无法连接，就可以加到配置列表里。</p>
+<h1 id="域名添加与访问指南">域名添加与访问指南</h1>
+<p>如果你发现了有一个域名无法连接，可以尝试配置。</p>
+<p><em><strong>Uncompleted</strong></em></p>
+<h2 id="首先你要找到域名对应的IP">首先你要找到域名对应的 IP</h2>
+<p>洁净域名 IP 查询：<a href="https://www.whois365.com/">Whois365</a>（非广告）</p>
+<p>接下来，确保 ping 通这个 IP（请自行查找 ping 的方式）。</p>
+<p>或者，如果你明确该域名使用了 cdn，可以尝试自选 ip。</p>
+<p>以 CloudFlare 为例你可以到<a href="https://www.cloudflare-cn.com/ips/">这里</a>寻找一个 CloudFlareCDN 的 IP。并请确保 ping 得通。（一般可以）</p>
+<h2 id="明确过墙的方式">明确过墙的方式</h2>
+<p>这里有两种方式：QUIC 与丢弃 SNI。</p>
+<p>一一尝试。</p>
+<h2 id="访问域名">访问域名</h2>
+<p>注意，当你跳转的时候，对域名和协议极其敏感。</p>
 <p><strong>注意子域名也要。</strong></p>
-<p>如果还不行，那就是不行，子域名不支持 QUIC。</p>
+<p><strong>如果还不行，那就是不行。</strong></p>
+<h2 id="其他情况">其他情况</h2>
 <p>如果出现 HTTP 协议，或者非标准端口，请采用 <code>CMDconfig</code></p>
 <p>或者自己编写命令行。请参考：Chromium NewWork Configs Codes：</p>
 <pre><code class="language-java">// from: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/network_session_configurator/common/network_switch_list.h
