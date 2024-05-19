@@ -1,2 +1,1 @@
-MAP duckduckgo.com 52.250.42.157:443
-duckduckgo.com:443
+ --host-rules="MAP www.torproject.org 116.202.120.165, MAP *.torproject.org 116.202.120.165"  --ignore-certificate-errors
