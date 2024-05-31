@@ -1,1 +1,1 @@
- --host-rules="MAP www.torproject.org 116.202.120.165, MAP *.torproject.org 116.202.120.165"  --ignore-certificate-errors
+--host-resolver-rules="MAP archive.today 23.184.48.154"

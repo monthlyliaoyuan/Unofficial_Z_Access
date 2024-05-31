@@ -9,6 +9,7 @@
 ## 使用指南
 
 * 欢迎访问Zlibrary，充满**知识**的地方！
+* **鉴于Zlibrary目前遭到FBI和GFW的双重封锁，如果失效请自行进行新配置。**
 
 请翻到本文结尾，查看使用指南。
 
@@ -89,7 +90,7 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 好的，到了这里。
 
-#### 请访问[Zlibrary](https://zh.z-library.se)
+#### 请访问[Zlibrary](https://zh.singlelogin.re)
 
 或者自己去[搜](https://cn.bing.com)个网站玩玩
 

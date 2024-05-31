@@ -7,7 +7,7 @@ mainForm.add()
 var HostResolverLine="";
 var QUICLine="";
 var HostLine="";
-var CMDLine='--host-resolver-rules="MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443" -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443';
+var CMDLine='--host-resolver-rules="MAP bu2021.xyz 172.64.145.17:443,MAP zlib-articles.se 172.64.145.17:443" -origin-to-force-quic-on=bu2021.xyz:443,zlib-articles.se:443 --host-rules="MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
 //var url="https://zh.z-library.se/";
 
 import wsock.tcp.simpleHttpServer; 

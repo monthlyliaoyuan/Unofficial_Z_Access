@@ -30,7 +30,7 @@
 该文件包含命令行。（通常用于开发人员）
 
 ```text
---host-resolver-rules="MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443" -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
+--host-resolver-rules="MAP zh.z-library.re [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443" -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
 ```
 
 ## `-d`

@@ -1,5 +1,4 @@
 172.64.145.17
-zh.z-library.se
 bu2021.xyz
 annas-archive.se
 zlib-articles.se
@@ -12,6 +11,14 @@ i.pximg.net
 www.pximg.net
 stackpath.bootstrapcdn.com
 maxcdn.bootstrapcdn.com
+medium.com
+cdn-client.medium.com
+glyph.medium.com
+miro.medium.com
+
+176.123.7.105
+^zh.singlelogin.re
+^singlelogin.re
 
 35.186.227.193
 www.freenom.com
@@ -23,3 +30,14 @@ www.freenom.com
 ^wikipedia.org
 ^zh.wikipedia.org
 ^www.wikipedia.org
+^wikimedia.org
+
+23.184.48.154
+^archive.ph
+
+52.250.42.157
+^duckduckgo.com
+^external-content.duckduckgo.com
+
+185.199.111.153
+^mlmmlm-icu.github.io

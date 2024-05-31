@@ -14,7 +14,7 @@
 <p>使用命令行配置文件。</p>
 <p>如果有 <code>[FILE]</code>，程序读取 <code>FILE</code>，否则程序会尝试读取同一目录下的 <code>CMDconfig.txt</code>。</p>
 <p>该文件包含命令行。（通常用于开发人员）</p>
-<pre><code class="language-text">--host-resolver-rules=&quot;MAP zh.z-library.se [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443&quot; -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
+<pre><code class="language-text">--host-resolver-rules=&quot;MAP zh.z-library.re [2606:4700:3033::ac43:aa46]:443,MAP bu2021.xyz [2606:4700:3033::6815:3e2]:443&quot; -origin-to-force-quic-on=zh.z-library.se:443,bu2021.xyz:443
 </code></pre>
 <h2 id="---"><code>-d</code></h2>
 <p>根据域名进行配置，要求 IP 支持 QUIC，且能访问（一般指 ping 得通）（<strong>必须支持 QUIC</strong>）。</p>
