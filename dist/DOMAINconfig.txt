@@ -1,8 +1,6 @@
 172.64.145.17
 bu2021.xyz
 annas-archive.se
-zlib-articles.se
-zh.zlib-articles.se
 www.v2ray.com
 www.mediafire.com
 gfw.report
@@ -15,6 +13,9 @@ medium.com
 cdn-client.medium.com
 glyph.medium.com
 miro.medium.com
+
+193.218.118.42
+^libgen.rs
 
 176.123.7.105
 ^zh.singlelogin.re

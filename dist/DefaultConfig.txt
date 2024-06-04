@@ -1,0 +1,11 @@
+172.64.145.17
+bu2021.xyz
+annas-archive.se
+
+193.218.118.42
+^libgen.is
+^libgen.rs
+
+176.123.7.105
+^zh.singlelogin.re
+^singlelogin.re
