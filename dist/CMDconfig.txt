@@ -1,1 +1,1 @@
---host-resolver-rules="MAP archive.today 23.184.48.154"
+--proxy-server=127.0.0.1:2500

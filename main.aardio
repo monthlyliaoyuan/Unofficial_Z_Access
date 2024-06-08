@@ -1,4 +1,5 @@
 import win.ui;
+import win.ui.menu;
 /*DSG{{*/
 mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
 mainForm.add()
@@ -88,7 +89,8 @@ if(_ARGV["h"])
 	url="/help.html";
 }
 
-import web.view;
+import web.view.7;
+
 if(string.len(CMDLine)>=8192) win.msgbox("Too long CMDLine, and this may cause Error. ","Warning");
 var view=web.view(mainForm,0,CMDLine);
 view.go("/web/index.html");
@@ -99,6 +101,8 @@ if(_ARGV["o"])
 	//shit mountain code
 	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
 }
+
+
 else view.go(url);
 return win.loopMessage();
 
