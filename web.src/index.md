@@ -43,8 +43,8 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 
 可能上面有一些不知所云，我强烈推荐你阅读以下书籍（都是Zlibrary上的，也帮你验证以下直连效果）：
 
-+ [共和国的历程](https://zh.z-library.se/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html)
-+ [文革与改开](https://zh.z-library.se/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html)
++ [共和国的历程](https://zh.singlelogin.re/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html)
++ [文革与改开](https://zh.singlelogin.re/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html)
 
 大群的报刊（mediafire上的，其暂未被封锁，但使用cloudflareCDN，可以使用同样的方法解开，见**高级使用指南**）
 
@@ -91,6 +91,12 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 我是没放什么小玩意。
 
 如果你看过上面的参考资料，也会知道我没有理由放。
+
+## 关于更新
+
+不会主动推送，请关注github Release界面。
+
+**注意：更新不一定发新版本号，请关注dist文件时间上传时间。**
 
 ## 使用指南
 

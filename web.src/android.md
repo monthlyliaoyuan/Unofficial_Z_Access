@@ -148,6 +148,12 @@ chrome://version/
 
 使用Chrome浏览器，键入`https://zh.singlelogin.re`
 
+# 安卓更新指南
+
+1. 重新连接adb（如果你没有卸载Termux，不用`pair`，直接`connect`即可）
+2. 设置command-line
+3. 退出chrome，重启手机
+
 ## The end.
 
 如果出现问题，可以Github开Issue。
