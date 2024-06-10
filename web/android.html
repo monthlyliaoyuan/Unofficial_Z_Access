@@ -1,0 +1,118 @@
+<h1 id="安卓使用指南">安卓使用指南</h1>
+<p><em><strong>本指南极其复杂，在决定踏上这条路前请三思！</strong></em></p>
+<p>本教程测试于 MIUI14（国内版）。</p>
+<p><strong>遇到类似不安全或病毒报警，请自行判断是否继续。</strong></p>
+<p>为了省流，我不打算配图片</p>
+<h2 id="第一部分-准备文件">第一部分：准备文件</h2>
+<h3 id="两个安装包">两个安装包</h3>
+<p>（<code>.apk</code>），提供的是两个链接，不保证可以下载。</p>
+<ul>
+<li><a href="https://www.downkuai.com/android/140917.html">Termux</a>（知道 F-droid 的，推荐从 Fdroid 下载；如果你用电脑进行 ADB，则不需要）</li>
+<li><a href="https://www.onlinedown.net/soft/10107048.htm">AndroidGoogleChrome</a>（建议用链接里的版本，切记不要 <code>安全下载</code>！否则后果自负）</li>
+</ul>
+<h3 id="一句命令">一句命令</h3>
+<p>先关闭本软件，再点开本软件安装包同级目录下的 <code>GetAndroidADBCommandLine.bat</code>，本软件会重新打开，然后复制上面的第一行内容（以 <code>_</code> 开头）</p>
+<p>你会得到类似这样的东西：</p>
+<pre><code class="language-text">echo &quot;_ --host-resolver-rules=\&quot;MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443\&quot; -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules=\&quot;MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105\&quot; --ignore-certificate-errors&quot; &gt; chrome-command-line
+</code></pre>
+<h2 id="第二部分-开启ADB">第二部分：开启 ADB</h2>
+<p>这里提供一个 MIUI 下利用 Termux 作为终端的例子。</p>
+<h3 id="安装Termux并作准备">安装 Termux 并作准备</h3>
+<p>进入 Termux 后，是一个命令行界面。</p>
+<p>你可以考虑换清华源，见<a href="https://mirrors.tuna.tsinghua.edu.cn/help/termux/">镜像站官方帮助文档</a></p>
+<p>依次执行以下命令：（如果遇到提问，直接 <code>Enter</code> 走默认）</p>
+<pre><code class="language-bash">apt update
+apt upgrade
+pkg install android-tools
+</code></pre>
+<h3 id="连接ADB">连接 ADB</h3>
+<p>其他系统（UI）请自行搜索或探索办法。</p>
+<p>请务必连上 WIFI（其实不重要，但是 MIUI 无线调试必须连 wifi 才能开启，所以这个网慢不慢不重要，其实这个操作根本不用连网）</p>
+<ol>
+<li>
+<p>点开 <code>设置</code></p>
+</li>
+<li>
+<p>点开 <code>我的设备</code></p>
+</li>
+<li>
+<p>点开 <code>全部参数于信息</code></p>
+</li>
+<li>
+<p>快速点击 <code>MIUI版本</code> 五次，会看到消息框 <code>您现在处于开发者模式！</code></p>
+</li>
+<li>
+<p>不停点击返回回到 <code>设置</code> 根菜单</p>
+</li>
+<li>
+<p>找到 <code>更多设置</code>，进入</p>
+</li>
+<li>
+<p>进入 <code>开发者选项</code></p>
+</li>
+<li>
+<p>找到 <code>无线调试</code>，进入，启用</p>
+</li>
+<li>
+<p>与之前开启的 <code>Termux</code> 窗口分屏（小窗也可以，不能切后台，重要！）</p>
+</li>
+<li>
+<p>点开使用配对码配对设备</p>
+</li>
+<li>
+<p>会弹出来一个报告小窗窗，上面有 <code>WLAN配对码</code>，是 6 个数字，记下来，比如说是 <code>114514</code>；还有一个 <code>IP地址和·端口</code>（显示在报告小窗上那个），记下来，比如说是 <code>192.168.2.114:42257</code></p>
+</li>
+<li>
+<p>进入 <code>Termux</code>，打命令并 <code>Enter</code></p>
+<pre><code class="language-bash">adb pair 192.168.2.224:42257 114514
+</code></pre>
+<p>根据上一步得到数据自行修改）。然后应该会显示类似 <code>Pair Successfully</code> 之类的，你没看到 <code>Error</code> 或者 <code>ERR</code> 就行。</p>
+</li>
+<li>
+<p>回到无线调试设置，你应该会看到一个已配对设备，继续。这次我们选在主窗口上的 <code>IP地址和端口</code>，记下来，比如说是 <code>192.168.2.114:42819</code>。<br />
+键入并 <code>Enter</code></p>
+<pre><code class="language-bash">adb connect 192.168.2.114:42819
+</code></pre>
+<p>应该返回 <code>Connected Successfully</code> 之类的，然后无线调试窗口的已配对设备会显示已连接，连接完成。<code>Termux</code> 不要退出。</p>
+</li>
+</ol>
+<h3 id="设置command-line">设置 command-line</h3>
+<p>上一步完成后，继续键入命令并 <code>Enter</code>（比如说在 <code>Termux</code> 里）。</p>
+<pre><code class="language-bash">adb shell
+cd /data/local/tmp
+</code></pre>
+<p>然后把你之前获取的那段命令键入并 <code>Enter</code>，比方说</p>
+<pre><code class="language-bash">echo &quot;_ --host-resolver-rules=\&quot;MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443\&quot; -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules=\&quot;MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105\&quot; --ignore-certificate-errors&quot; &gt; chrome-command-line
+</code></pre>
+<p>接下来</p>
+<pre><code class="language-bash">echo &quot;$ (&lt;chrome-command-line)
+</code></pre>
+<p>会输出类似这样的内容：</p>
+<pre><code class="language-text">_ --host-resolver-rules=&quot;MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443&quot; -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules=&quot;MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105&quot; --ignore-certificate-errors
+
+
+</code></pre>
+<p>OK，键入</p>
+<pre><code class="language-bash">exit
+adb disconnect
+</code></pre>
+<p>关闭无线调试，关闭开发者模式，关闭 Termux。</p>
+<h2 id="第三部分-打开ChromeFlag">第三部分：打开 ChromeFlag</h2>
+<p>还记得 Chrome 吗（必须要 Chrome，其他浏览器一律不行）。</p>
+<p>进入，一路瞎点。</p>
+<p>地址栏输入</p>
+<pre><code class="language-text">chrome://flags/
+</code></pre>
+<p>搜索 <code>Command</code>，找到 <code>Enable command line on non-rooted devices</code>，设置为 <code>Enabled</code>。</p>
+<p>退出 Chrome，<strong>重启手机</strong>。</p>
+<h2 id="第四部分-确认设置成功">第四部分：确认设置成功</h2>
+<p>重新打开 Chrome。</p>
+<p>地址栏输入</p>
+<pre><code class="language-text">chrome://version/
+</code></pre>
+<p>确认命令行栏有 <code>_</code> 打头。</p>
+<h2 id="第五部分-愉快上网">第五部分：愉快上网</h2>
+<p>使用 Chrome 浏览器，键入 <code>https://zh.singlelogin.re</code></p>
+<h2 id="The-end-">The end.</h2>
+<p>如果出现问题，可以 Github 开 Issue。</p>
+<p>返回<a href="./index.html">首页</a></p>

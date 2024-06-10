@@ -101,7 +101,16 @@ if(_ARGV["o"])
 	//shit mountain code
 	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
 }
-
+if(_ARGV["a"])
+{
+	var AndroidLine=CMDLine;
+	var ReplaceTable={
+		['"'] = "\"+'"'
+	};
+	AndroidLine=string.replace(AndroidLine,".|:",ReplaceTable);
+	AndroidLine='echo "_'+" "+AndroidLine+'" > chrome-command-line';
+	view.html="<!doctype html><html><head></head><body><p>"+AndroidLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
+}
 
 else view.go(url);
 return win.loopMessage();
