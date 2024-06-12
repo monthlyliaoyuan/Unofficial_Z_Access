@@ -158,4 +158,6 @@ chrome://version/
 
 如果出现问题，可以Github开Issue。
 
+本文档按照[GFDL](https://www.gnu.org/licenses/fdl-1.3.html#license-text)提供。
+
 返回[首页](./index.html)

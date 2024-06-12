@@ -181,6 +181,8 @@ NETWORK_SWITCH(kHttp2EndStreamWithDataFrame, "http2-end-stream-with-data-frame")
 
 有问题请加Github issue。
 
+本文档除引用的Chromium源码外部分按照[GFDL](https://www.gnu.org/licenses/fdl-1.3.html#license-text)提供。
+
 ---
 
 返回[首页](./index.html)

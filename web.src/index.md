@@ -116,6 +116,10 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 #### 想访问Google/Youtube? 一个[网络代理](https://www.proxyium.com/)（*与我没有任何关系，隐私或安全以及可用性问题请自负*）。
 
+软件根据[GPLv3](https://www.gnu.org/licenses/gpl-3.0.html#license-text)提供，源码位于github上。
+
+包括但不限于`index`，`help`，`android`的帮助文档按照[GFDL](https://www.gnu.org/licenses/fdl-1.3.html#license-text)提供。
+
 ## 高级使用指南
 
 [help.html](./help.html)
