@@ -108,11 +108,13 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 由于zlib好像最近树敌（FBI，GFW，可能还有其他什么东西）有点多，我也给出另外两个电子图书馆的访问方式。（没错，使用了一些科技）
 
-#### 请访问[Anna'sArchive](https://annas-archive.se)
+#### 请访问[Anna'sArchive](https://annas-archive.se/)
 
-#### 请访问[LibGen](https://libgen.rs)
+#### 请访问[LibGen](https://libgen.rs/)
 
 #### 或者使用[跳转](./jumper.html)
+
+#### 想访问Google/Youtube? 一个[网络代理](https://www.proxyium.com/)（*与我没有任何关系，隐私或安全以及可用性问题请自负*）。
 
 ## 高级使用指南
 

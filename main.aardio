@@ -8,7 +8,7 @@ mainForm.add()
 var HostResolverLine="";
 var QUICLine="";
 var HostLine="";
-var CMDLine='--host-resolver-rules="MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules="MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
+var CMDLine='--host-resolver-rules="MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443,MAP www.proxyium.com 172.64.145.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443,www.proxyium.com:443 --host-rules="MAP libgen.is 193.218.118.42,MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
 //var url="https://zh.z-library.se/";
 
 import wsock.tcp.simpleHttpServer; 
@@ -101,7 +101,7 @@ if(_ARGV["o"])
 	//shit mountain code
 	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
 }
-if(_ARGV["a"])
+else if(_ARGV["a"])
 {
 	var AndroidLine=CMDLine;
 	var ReplaceTable={
@@ -111,7 +111,6 @@ if(_ARGV["a"])
 	AndroidLine='echo "_'+" "+AndroidLine+'" > chrome-command-line';
 	view.html="<!doctype html><html><head></head><body><p>"+AndroidLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
 }
-
 else view.go(url);
 return win.loopMessage();
 

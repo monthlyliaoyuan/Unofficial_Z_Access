@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.2" ProductVersion="5.0.0.2" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.4" ProductVersion="5.0.0.4" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false"/>
 	<folder name="web" path="web" comment="web" local="true" embed="true" ignored="false"/>

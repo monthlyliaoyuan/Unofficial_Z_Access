@@ -1,6 +1,7 @@
 172.64.145.17
 bu2021.xyz
 annas-archive.se
+www.proxyium.com
 
 193.218.118.42
 ^libgen.is
