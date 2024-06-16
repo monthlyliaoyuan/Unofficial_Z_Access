@@ -2,11 +2,10 @@
 bu2021.xyz
 annas-archive.se
 www.proxyium.com
+z-lib.gs
+zh.z-lib.gs
+dlz1.fcdn.sk
 
 193.218.118.42
 ^libgen.is
 ^libgen.rs
-
-176.123.7.105
-^zh.singlelogin.re
-^singlelogin.re

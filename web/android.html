@@ -85,12 +85,10 @@ cd /data/local/tmp
 <pre><code class="language-bash">echo &quot;_ --host-resolver-rules=\&quot;MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443\&quot; -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules=\&quot;MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105\&quot; --ignore-certificate-errors&quot; &gt; chrome-command-line
 </code></pre>
 <p>接下来</p>
-<pre><code class="language-bash">echo &quot;$ (&lt;chrome-command-line)
+<pre><code class="language-bash">echo &quot;$(&lt;chrome-command-line)&quot;
 </code></pre>
 <p>会输出类似这样的内容：</p>
 <pre><code class="language-text">_ --host-resolver-rules=&quot;MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443&quot; -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules=&quot;MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105&quot; --ignore-certificate-errors
-
-
 </code></pre>
 <p>OK，键入</p>
 <pre><code class="language-bash">exit

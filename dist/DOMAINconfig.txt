@@ -16,6 +16,9 @@ miro.medium.com
 odysee.com
 api.na-backend.odysee.com
 api.odysee.com
+z-lib.gs
+zh.z-lib.gs
+dlz1.fcdn.sk
 
 193.218.118.42
 ^libgen.rs

@@ -96,15 +96,13 @@ echo "_ --host-resolver-rules=\"MAP bu2021.xyz 172.64.145.17:443,MAP annas-archi
 接下来
 
 ```bash
-echo "$ (<chrome-command-line)
+echo "$(<chrome-command-line)"
 ```
 
 会输出类似这样的内容：
 
 ```text
 _ --host-resolver-rules="MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443 --host-rules="MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors
-
-
 ```
 
 OK，键入
