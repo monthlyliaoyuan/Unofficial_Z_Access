@@ -104,6 +104,8 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 #### 请访问[Zlibrary](https://z-lib.gs)
 
+[线路二](https://zh.singlelogin.re)
+
 或者自己去[搜](https://cn.bing.com)个网站玩玩
 
 由于zlib好像最近树敌（FBI，GFW，可能还有其他什么东西）有点多，我也给出另外两个电子图书馆的访问方式。（没错，使用了一些科技）
@@ -119,6 +121,8 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 软件根据[GPLv3](https://www.gnu.org/licenses/gpl-3.0.html#license-text)提供，源码位于github上。
 
 包括但不限于`index`，`help`，`android`的帮助文档按照[GFDL](https://www.gnu.org/licenses/fdl-1.3.html#license-text)提供。
+
+## [尝试](./download.html)找到下载内容
 
 ## 高级使用指南
 
