@@ -94,7 +94,9 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 ## 关于更新
 
-不会主动推送，请关注github Release界面。
+本项目完全免费。项目地址：[Github](https://github.com/louiesun/Unofficial_Z_Access)
+
+不会主动推送，请关注[github Release](https://github.com/louiesun/Unofficial_Z_Access/releases)界面。
 
 **注意：更新不一定发新版本号，请关注dist文件时间上传时间。**
 
