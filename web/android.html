@@ -8,7 +8,7 @@
 <p>（<code>.apk</code>），提供的是两个链接，不保证可以下载。</p>
 <ul>
 <li><a href="https://www.downkuai.com/android/140917.html">Termux</a>（知道 F-droid 的，推荐从 Fdroid 下载；如果你用电脑进行 ADB，则不需要）</li>
-<li><a href="https://www.onlinedown.net/soft/10107048.htm">AndroidGoogleChrome</a>（建议用链接里的版本，切记不要 <code>安全下载</code>！否则后果自负）</li>
+<li><a href="https://www.onlinedown.net/soft/10107048.htm">KiWiBrowser</a>（建议用链接里的版本，切记不要 <code>安全下载</code>！否则后果自负）（其他基于 Chromium 的浏览器也可，比如 Chromium, Chrome, UngoogledChromium, Bromite，我之所以推荐 kiwi 是因为他支持扩展，这也是我自用的浏览器之一，且是最常用的浏览器）</li>
 </ul>
 <h3 id="一句命令">一句命令</h3>
 <p>先关闭本软件，再点开本软件安装包同级目录下的 <code>GetAndroidADBCommandLine.bat</code>，本软件会重新打开，然后复制上面的第一行内容（以 <code>_</code> 开头）</p>
@@ -96,26 +96,26 @@ adb disconnect
 </code></pre>
 <p>关闭无线调试，关闭开发者模式，关闭 Termux。</p>
 <h2 id="第三部分-打开ChromeFlag">第三部分：打开 ChromeFlag</h2>
-<p>还记得 Chrome 吗（必须要 Chrome，其他浏览器一律不行）。</p>
+<p>还记得 Kiwi 吗。</p>
 <p>进入，一路瞎点。</p>
 <p>地址栏输入</p>
 <pre><code class="language-text">chrome://flags/
 </code></pre>
 <p>搜索 <code>Command</code>，找到 <code>Enable command line on non-rooted devices</code>，设置为 <code>Enabled</code>。</p>
-<p>退出 Chrome，<strong>重启手机</strong>。</p>
+<p>退出 Kiwi，杀掉所有进程，<strong>重启手机</strong>。</p>
 <h2 id="第四部分-确认设置成功">第四部分：确认设置成功</h2>
-<p>重新打开 Chrome。</p>
+<p>重新打开 Kiwi。</p>
 <p>地址栏输入</p>
 <pre><code class="language-text">chrome://version/
 </code></pre>
-<p>确认命令行栏有 <code>_</code> 打头。</p>
+<p>确认命令行栏有 <code>_</code> 打头，如果没有，再次杀掉所有进程，重启，不断重复知道出现 <code>_</code>。</p>
 <h2 id="第五部分-愉快上网">第五部分：愉快上网</h2>
-<p>使用 Chrome 浏览器，键入 <code>https://zh.singlelogin.re</code></p>
+<p>使用 KiWi 浏览器，键入 <code>https://zh.singlelogin.re</code></p>
 <h1 id="安卓更新指南">安卓更新指南</h1>
 <ol>
-<li>重新连接 adb（如果你没有卸载 Termux，不用 <code>pair</code>，直接 <code>connect</code> 即可）</li>
-<li>设置 command-line</li>
-<li>退出 chrome，重启手机</li>
+<li>重新连接 adb（如果你没有卸载 Termux，不用 <code>pair</code>，直接 <code>connect</code> 即可）。</li>
+<li>设置 command-line。</li>
+<li>退出 Kiwi，杀掉所有进程，重启手机。</li>
 </ol>
 <h2 id="The-end-">The end.</h2>
 <p>如果出现问题，可以 Github 开 Issue。</p>
