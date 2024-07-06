@@ -1,6 +1,7 @@
 172.64.145.17
 bu2021.xyz
 annas-archive.se
+zh.annas-archive.se
 www.v2ray.com
 www.mediafire.com
 gfw.report
