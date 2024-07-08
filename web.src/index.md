@@ -19,7 +19,7 @@
 
 提示：极其折腾！（对于有安卓ADB经验的除外）
 
-[指南](./android.html)
+[指南](./help.html#安卓配置指南)
 
 ## 发行缘由
 
@@ -128,7 +128,7 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 ## 高级使用指南
 
-[help.html](./help.html)
+[help.html](./help.html)（想要[更好的渲染](https://louiesun.github.io/AppsHelp/UZA.html)？）
 
 源码托管于github上。
 
