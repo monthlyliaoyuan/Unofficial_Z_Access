@@ -20,7 +20,10 @@ api.odysee.com
 z-lib.gs
 zh.z-lib.gs
 dlz1.fcdn.sk
-www.proxyium.com
+cdn.croxy.network
+
+143.244.204.138
+^www.croxy.network
 
 193.218.118.42
 ^libgen.rs

@@ -84,7 +84,7 @@ Zlib目前遭到GFW的DNS污染与SNI阻断，其挂靠在CloudFlare后面。
 
 DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏洞，我们也许应该等待ECH在国外基本普及。
 
-目前QUIC过了3年没被封。
+目前QUIC过了3年没被封。（UDP有QoS，但是能用）。
 
 ## 安全性
 
@@ -96,7 +96,9 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 本项目完全免费。项目地址：[Github](https://github.com/louiesun/Unofficial_Z_Access)
 
-不会主动推送，请关注[github Release](https://github.com/louiesun/Unofficial_Z_Access/releases)界面。
+不会主动推送，请关注[Github Release](https://github.com/louiesun/Unofficial_Z_Access/releases)界面。
+
+[项目主页](https://louiesun.github.io/Unofficial_Z_Access/)
 
 **注意：更新不一定发新版本号，请关注dist文件时间上传时间。**
 
@@ -118,7 +120,7 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 #### 或者使用[跳转](./jumper.html)
 
-#### 想访问Google/Youtube? 一个[网络代理](https://www.proxyium.com/)（*与我没有任何关系，隐私或安全以及可用性问题请自负*）。
+#### 想访问Google/Youtube? 一个[网络代理](https://www.croxy.network/)（*与我没有任何关系，且我看下来有大量广告（甚至不少VPN广告，请自行鉴别）。隐私或安全以及可用性问题请自负*）。
 
 软件根据[GPLv3](https://www.gnu.org/licenses/gpl-3.0.html#license-text)提供，源码位于github上。
 

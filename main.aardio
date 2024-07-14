@@ -1,14 +1,14 @@
 import win.ui;
 import win.ui.menu;
 /*DSG{{*/
-mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467;)
+mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
 mainForm.add()
 /*}}*/
 
 var HostResolverLine="";
 var QUICLine="";
 var HostLine="";
-var CMDLine='--host-resolver-rules="MAP bu2021.xyz 172.64.145.17:443,MAP annas-archive.se 172.64.145.17:443,MAP zh.annas-archive.se 172.64.145.17:443,MAP www.proxyium.com 172.64.145.17:443,MAP z-lib.gs 172.64.145.17:443,MAP zh.z-lib.gs 172.64.145.17:443,MAP dlz1.fcdn.sk 172.64.145.17:443,MAP reader.fcdn.sk 172.64.145.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443,zh.annas-archive.se:443,www.proxyium.com:443,z-lib.gs:443,zh.z-lib.gs:443,dlz1.fcdn.sk:443,reader.fcdn.sk:443 --host-rules="MAP libgen.is 193.218.118.42,MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
+var CMDLine='--host-resolver-rules="MAP bu2021.xyz 104.16.187.17:443,MAP annas-archive.se 104.16.187.17:443,MAP zh.annas-archive.se 104.16.187.17:443,MAP z-lib.gs 104.16.187.17:443,MAP zh.z-lib.gs 104.16.187.17:443,MAP dlz1.fcdn.sk 104.16.187.17:443,MAP reader-service.fcdn.sk 104.16.187.17:443,MAP cdn.croxy.network 104.16.187.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443,zh.annas-archive.se:443,z-lib.gs:443,zh.z-lib.gs:443,dlz1.fcdn.sk:443,reader-service.fcdn.sk:443,cdn.croxy.network:443 --host-rules="MAP www.croxy.network 143.244.204.138,MAP libgen.is 193.218.118.42,MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
 //var url="https://zh.z-library.se/";
 
 import wsock.tcp.simpleHttpServer; 

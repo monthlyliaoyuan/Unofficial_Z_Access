@@ -1,12 +1,15 @@
-172.64.145.17
+104.16.187.17
 bu2021.xyz
 annas-archive.se
 zh.annas-archive.se
-www.proxyium.com
 z-lib.gs
 zh.z-lib.gs
 dlz1.fcdn.sk
-reader.fcdn.sk
+reader-service.fcdn.sk
+cdn.croxy.network
+
+143.244.204.138
+^www.croxy.network
 
 193.218.118.42
 ^libgen.is
