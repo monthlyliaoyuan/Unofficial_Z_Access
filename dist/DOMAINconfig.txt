@@ -20,6 +20,7 @@ api.odysee.com
 z-lib.gs
 zh.z-lib.gs
 dlz1.fcdn.sk
+www.proxyium.com
 
 193.218.118.42
 ^libgen.rs
