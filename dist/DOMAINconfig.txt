@@ -5,9 +5,13 @@ zh.annas-archive.se
 www.v2ray.com
 www.mediafire.com
 gfw.report
+
+104.19.112.154
 www.pixiv.net
 i.pximg.net
 www.pximg.net
+
+104.19.112.156
 stackpath.bootstrapcdn.com
 maxcdn.bootstrapcdn.com
 medium.com
@@ -17,10 +21,14 @@ miro.medium.com
 odysee.com
 api.na-backend.odysee.com
 api.odysee.com
+
+104.19.113.157
 z-lib.gs
 zh.z-lib.gs
 dlz1.fcdn.sk
 cdn.croxy.network
+apkmirror.com
+www.apkmirror.com
 
 143.244.204.138
 ^www.croxy.network
