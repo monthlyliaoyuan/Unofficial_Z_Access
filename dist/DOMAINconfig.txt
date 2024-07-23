@@ -23,8 +23,9 @@ api.na-backend.odysee.com
 api.odysee.com
 
 104.19.113.157
-z-lib.gs
-zh.z-lib.gs
+z-library.rs
+zh.z-library.rs
+reader.z-library.rs
 dlz1.fcdn.sk
 cdn.croxy.network
 apkmirror.com

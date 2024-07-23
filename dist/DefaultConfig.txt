@@ -2,11 +2,14 @@
 bu2021.xyz
 annas-archive.se
 zh.annas-archive.se
-z-lib.gs
-zh.z-lib.gs
+z-library.rs
+zh.z-library.rs
+reader.z-library.rs
 dlz1.fcdn.sk
-reader-service.fcdn.sk
 cdn.croxy.network
+
+176.123.7.228
+1lib.sk
 
 143.244.204.138
 ^www.croxy.network

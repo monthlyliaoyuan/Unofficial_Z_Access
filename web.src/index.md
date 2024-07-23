@@ -43,8 +43,8 @@ Zlibrary遭GFW封锁，Zlibrary官方中国区向中国政府低头。
 
 可能上面有一些不知所云，我强烈推荐你阅读以下书籍（都是Zlibrary上的，也帮你验证以下直连效果）：
 
-+ [共和国的历程](https://z-lib.gs/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html)
-+ [文革与改开](https://z-lib.gs/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html)
++ [共和国的历程](https://z-library.rs/book/17447552/cf6795/%E5%85%B1%E5%92%8C%E5%9B%BD%E7%9A%84%E5%8E%86%E7%A8%8B.html)
++ [文革与改开](https://z-library.rs/book/17567345/2280e3/%E6%96%87%E9%9D%A9%E4%B8%8E%E6%94%B9%E5%BC%80.html)
 
 大群的报刊（mediafire上的，其暂未被封锁，但使用cloudflareCDN，可以使用同样的方法解开，见**高级使用指南**）
 
@@ -106,13 +106,17 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 好的，到了这里。
 
-#### 请访问[Zlibrary](https://z-lib.gs)
+#### 请访问[Zlibrary](https://z-library.rs)
 
-[线路二](https://zh.singlelogin.re)
+#### Zlibrary[线路二](https://zh.singlelogin.re)
 
 或者自己去[搜](https://cn.bing.com)个网站玩玩
 
 由于zlib好像最近树敌（FBI，GFW，可能还有其他什么东西）有点多，我也给出另外两个电子图书馆的访问方式。（没错，使用了一些科技）
+
+**请注意！！！！！！由于Zlib的在线阅读莫名奇妙会跳到http，导致quic失效。当你点击在线阅读后会出现连接已重置，此时请赋值这个链接，进入下方的[跳转](./jumper.html)，然后改成https协议访问。**
+
+**或者请点击3个点直接下载！！！！！！**
 
 #### 请访问[Anna'sArchive](https://annas-archive.se/)
 
