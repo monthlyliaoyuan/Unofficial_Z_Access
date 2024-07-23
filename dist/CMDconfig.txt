@@ -1,1 +1,1 @@
---proxy-server=127.0.0.1:4500
+--host-rules="MAP www.matrix.org 104.20.76.252,MAP matrix.org 104.20.76.252" --ignore-certificate-errors
