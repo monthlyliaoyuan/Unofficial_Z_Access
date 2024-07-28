@@ -6,10 +6,20 @@ www.v2ray.com
 www.mediafire.com
 gfw.report
 
+114.250.70.34
+-www.recaptcha.net
+
+13.107.139.11
+^onedrive.live.com
+
+87.250.250.50
+^disk.yandex.com
+
 104.19.112.154
 www.pixiv.net
 i.pximg.net
 www.pximg.net
+accounts.pixiv.net
 
 104.19.112.156
 stackpath.bootstrapcdn.com

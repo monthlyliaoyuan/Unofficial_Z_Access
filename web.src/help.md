@@ -49,6 +49,7 @@
 
 + 如果是QUIC，直接写上来。
 + 如果是丢弃sni，在行首加上`^`。（这是因为严格上来讲丢弃sni是非正常做法，所以使用特殊标识）
++ 如果只是修改dns，在行首加上`-`
 
 以下是一个可行的配置：（这两个IP分别是CloudFlare的IPv4与IPv6之一，为了演示分开）。
 
@@ -60,6 +61,9 @@ annas-archive.se
 longlivemarxleninmaoism.online
 zlib-articles.se
 zh.zlib-articles.se
+
+114.250.70.34
+-www.recaptcha.net
 
 172.64.145.17
 www.pixiv.net
@@ -365,7 +369,6 @@ NETWORK_SWITCH(kHttp2EndStreamWithDataFrame, "http2-end-stream-with-data-frame")
 ## 版权声明
 
 本文档除引用的Chromium源码外部分按照[GFDL](https://www.gnu.org/licenses/fdl-1.3.html#license-text)提供。
-
 
 [^1]: 比如说，`www.pixiv.net`和`pixiv.net`不一样，`z-library.se`和`zh.z-library.se`不一样。
 

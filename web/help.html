@@ -26,6 +26,7 @@
 <ul>
 <li>如果是 QUIC，直接写上来。</li>
 <li>如果是丢弃 sni，在行首加上 <code>^</code>。（这是因为严格上来讲丢弃 sni 是非正常做法，所以使用特殊标识）</li>
+<li>如果只是修改 dns，在行首加上 <code>-</code></li>
 </ul>
 <p>以下是一个可行的配置：（这两个 IP 分别是 CloudFlare 的 IPv4 与 IPv6 之一，为了演示分开）。</p>
 <pre><code class="language-plaintext">[2606:4700:3033::ac43:aa46]
@@ -35,6 +36,9 @@ annas-archive.se
 longlivemarxleninmaoism.online
 zlib-articles.se
 zh.zlib-articles.se
+
+114.250.70.34
+-www.recaptcha.net
 
 172.64.145.17
 www.pixiv.net
