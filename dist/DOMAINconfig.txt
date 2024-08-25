@@ -11,6 +11,9 @@ bbs.revolutionfront2023.top
 revolutionfront2023.top
 maoism.freeflarum.com
 
+157.230.193.220
+^clb.org.hk
+
 192.250.237.151
 ^www.bannedthought.net
 
