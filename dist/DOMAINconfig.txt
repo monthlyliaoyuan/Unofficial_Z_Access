@@ -11,6 +11,10 @@ bbs.revolutionfront2023.top
 revolutionfront2023.top
 maoism.freeflarum.com
 
+76.76.21.61
+^*.vercel.app
+^vercel.app
+
 157.230.193.220
 ^clb.org.hk
 
