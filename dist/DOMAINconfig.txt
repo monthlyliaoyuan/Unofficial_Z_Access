@@ -18,14 +18,15 @@ maoism.freeflarum.com
 157.230.193.220
 ^clb.org.hk
 
+89.187.187.19
+^player.odycdn.com
+^thumbnails.odycdn.com
+
 192.250.237.151
 ^www.bannedthought.net
 
 135.148.102.40
 ^uploads-v4.odysee.com
-
-114.250.70.34
--www.recaptcha.net
 
 13.107.139.11
 ^onedrive.live.com
@@ -49,6 +50,7 @@ miro.medium.com
 odysee.com
 api.na-backend.odysee.com
 api.odysee.com
+naked-api.na-backend.odysee.com
 
 104.19.113.157
 z-library.rs
@@ -87,8 +89,7 @@ www.freenom.com
 
 185.15.59.224
 ^wikipedia.org
-^zh.wikipedia.org
-^www.wikipedia.org
+^*.wikipedia.org
 ^wikimedia.org
 
 23.184.48.154
@@ -104,3 +105,9 @@ www.freenom.com
 
 20.205.243.166
 ^github.com
+
+180.163.150.34
+-www.gstatic.cn
+
+114.250.70.34
+-www.recaptcha.net

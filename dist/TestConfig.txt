@@ -1,2 +1,11 @@
 151.101.129.91
 ^mastodon.online
+
+23.216.149.203
+www.qobuz.com
+
+52.18.104.110
+^play.qobuz.com
+
+3.168.85.143
+^static.qobuz.com
