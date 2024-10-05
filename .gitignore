@@ -1,1 +1,3 @@
 dist/Unofficial_Z_Access.exe
+py/
+!py/server.py
