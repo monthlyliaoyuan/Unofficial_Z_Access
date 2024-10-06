@@ -1,0 +1,27 @@
+{
+    "output_data": false,
+    "listen_PORT": 2500,
+    "num_TCP_fragment": 0,
+    "num_TLS_fragment": 2,
+    "my_socket_timeout": 180,
+    "domains": {
+		"freezhihu.org": {
+            "IP": "104.19.112.120",
+            "TCP_frag": 0,
+            "TCP_sleep": 0.01,
+            "TLS_frag": 6
+        },
+        "greatfire.org": {
+            "IP": "104.19.112.120",
+            "TCP_frag": 0,
+            "TCP_sleep": 0.01,
+            "TLS_frag": 6
+        },
+        "null": {
+            "IP": "127.0.0.1",
+            "TCP_frag": 0,
+            "TCP_sleep": 0.001,
+            "TLS_frag": 0
+        }
+    }
+}
