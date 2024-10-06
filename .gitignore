@@ -7,3 +7,7 @@ pip
 !py/server.py
 proxy.pac
 dist/proxy.pac
+CMDline.txt
+dist/CMDline.txt
+AndroidECHO.txt
+dist/AndroidECHO.txt
