@@ -1,3 +1,9 @@
 dist/Unofficial_Z_Access.exe
+dist/py
+dist/pip
+dist/web
 py/
+pip
 !py/server.py
+proxy.pac
+dist/proxy.pac

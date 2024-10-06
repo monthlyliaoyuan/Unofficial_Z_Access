@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.37" ProductVersion="5.0.0.37" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.44" ProductVersion="5.0.0.44" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false"/>
 	<folder name="web" path="web" comment="web" local="true" embed="true" ignored="false"/>
@@ -7,4 +7,8 @@
 		<file name="help.md" path="web.src\help.md" comment="web.src\help.md"/>
 		<file name="index.md" path="web.src\index.md" comment="web.src\index.md"/>
 	</folder>
+	<folder name="py" path="py" comment="py" local="false" embed="false" ignored="false">
+		<file name="server.py" path="py\server.py" comment="py\server.py"/>
+	</folder>
+	<file name="DOMAINconfig.txt" path="DOMAINconfig.txt" comment="DOMAINconfig.txt"/>
 </project>

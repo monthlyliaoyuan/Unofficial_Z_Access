@@ -9,9 +9,11 @@ var HostResolverLine="";
 var QUICLine="";
 var HostLine="";
 var CMDLine='--host-resolver-rules="MAP bu2021.xyz 104.16.187.17:443,MAP annas-archive.se 104.16.187.17:443,MAP zh.annas-archive.se 104.16.187.17:443,MAP z-library.rs 104.16.187.17:443,MAP zh.z-library.rs 104.16.187.17:443,MAP reader.z-library.rs 104.16.187.17:443,MAP dlz1.fcdn.sk 104.16.187.17:443,MAP cdn.croxy.network 104.16.187.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443,zh.annas-archive.se:443,z-library.rs:443,zh.z-library.rs:443,reader.z-library.rs:443,dlz1.fcdn.sk:443,cdn.croxy.network:443 --host-rules="MAP www.croxy.network 143.244.204.138,MAP libgen.is 193.218.118.42,MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
+//var CMDLine='--proxy-server=127.0.0.1:2500';
+import wsock.tcp.simpleHttpServer; 
+var webbase=wsock.tcp.simpleHttpServer.startUrl()
 //var url="https://zh.z-library.se/";
 
-import wsock.tcp.simpleHttpServer; 
 var url="/web/index.html";
 
 if(_ARGV["c"]) 
@@ -31,13 +33,14 @@ if(_ARGV["c"])
 	CMDLine=cfg.read();
 	cfg.close();
 }
-if(_ARGV["d"])
+
+if(_ARGV["d"]||_STUDIO_INVOKED)
 {
 	HostResolverLine="";
 	QUICLine="";
 	import fsys.file;
 	var cfg;
-	if(_ARGV["d"]!="")
+	if(_ARGV["d"]!=""&&_ARGV["d"]!=null)
 		cfg=fsys.file(_ARGV["d"]);
 	else
 		cfg=fsys.file("DOMAINconfig.txt");
@@ -88,23 +91,197 @@ if(_ARGV["d"])
 	
 	if(CMDLine!="") CMDLine=string.slice(CMDLine,1,-2,true);
 }
+if(_ARGV["p"]||_STUDIO_INVOKED)
+{	
+	import fsys.file;	
+	import web.json;
+	
+	
+	var fcfg=fsys.file("config.json")
+	if(!fsys.file.is(fcfg))
+	{
+		win.msgboxErr("No Config File! ","ERROR!");
+		return;
+	}
+	var cfg=fcfg.read(-1)
+	//win.msgbox(cfg)
+	fcfg.close()
+	
+	
+	cfg=web.json.parse(cfg)
+	//win.msgbox(cfg)
+	
+	var VarietesofCode=/**class TrieNode {
+    constructor(value){
+        this.value = value;
+        this.num=1;
+        this.deep=0;
+        this.son=[];
+        this.isEnd=false;
+    }
+    findNode(value){
+        for(let i=0;i<this.son.length;i++){
+            const node=this.son[i]
+            if(node.value == value){
+                return node;
+            }
+        }
+        return null;
+    }
+}
+class Trie {
+    constructor(){
+        this.root=new TrieNode(null);
+        this.size=1;
+    }
+    insert(str){
+        let node=this.root;
+        for(let c of str){
+            let snode = node.findNode(c);
+            if(snode==null){
+                snode=new TrieNode(c)
+                snode.deep=node.deep+1;
+                node.son.push(snode);
+            }else{
+                snode.num++;
+            }
+            node=snode;
+ 
+        }
+        
+        if (!node.isEnd) {
+            this.size++;
+            node.isEnd = true;
+        }
+    }
+    has(str){
+        let node=this.root;
+        for(let c of str){
+            const snode=node.findNode(c)
+            if(snode){
+                node=snode;
+            }else{
+                return false;
+            }
+        }
+        return node.isEnd;
+    }
+}
+
+let tr=null;
+function BuildAutomatom(arr) {
+	
+    tr=new Trie()
+    arr.forEach(function (item) {
+        tr.insert(item)
+    })
+	
+    root=tr.root;
+    root.fail=null;
+    const queue=[root]
+    let i=0;
+    while(i<queue.length){
+        const temp=queue[i];
+        for(let j=0;j<temp.son.length;j++){
+            const node=temp.son[j]
+            if(temp===root){
+                node.fail=root;
+            }else{
+                node.fail=temp.fail.findNode(node.value)||root;
+            }
+            queue.push(node);
+        }
+        i++
+    }
+}
+
+function MatchAutomatom(str) {
+	let node=tr.root;
+    const data=[];
+    for(let i=0;i<str.length;i++){
+ 
+        let cnode=node.findNode(str[i])
+        while(!cnode&&node!==tr.root){
+            node=node.fail;
+ 
+            cnode=node.findNode(str[i])
+        }
+        if(cnode){
+            node=cnode;
+        }
+        if(node.isEnd){
+            data.push({
+                start:i+1-node.deep,
+                len:node.deep,
+                str:str.substr(i+1-node.deep,node.deep),
+                num:node.num,
+            })
+        }
+    }
+    return data;
+}
+
+**/
+	fcfg=fsys.file("proxy.pac","w")
+	fcfg.write(VarietesofCode)
+	fcfg.write('let domains=[];\n')
+	for domain in cfg["domains"]
+	{
+		fcfg.write('domains.push("')
+		fcfg.write(domain)
+		fcfg.write('");\n')
+	}
+	fcfg.write('BuildAutomatom(domains);\n')
+	
+	VarietesofCode=/**function FindProxyForURL(url, host) {
+	if(MatchAutomatom(host).length)
+ 		return "PROXY 127.0.0.1:**/
+	fcfg.write(VarietesofCode);
+	fcfg.write(tostring(cfg["listen_PORT"]));
+	VarietesofCode=/**";
+	else
+		return "DIRECT";
+}
+**/
+	fcfg.write(VarietesofCode)
+	fcfg.close()
+	var pacpath=webbase+"/proxy.pac"
+	
+	//url="https://freezhihu.org"
+	//url="https://cn.bing.com"
+	
+	//win.msgbox(pacpath)
+	
+	//CMDLine=CMDLine+' --proxy-pac-url="file:\\\\\\d:\\apps\\unofficial_z_access\\proxy.pac"';	
+	CMDLine=CMDLine+" --proxy-pac-url="+pacpath;
+	//CMDLine=CMDLine+" --proxy-server=127.0.0.1:2500";
+	
+	import process.python;
+	import process.python.pip;
+
+	process.python.pip.require("requests==2.32.3")
+	process.python.pip.require("ahocorasick-python==0.0.9")
+	process.python.execfile("/py/server.py")
+}
+
 if(_ARGV["g"]) url=_ARGV["g"];
 if(_ARGV["h"])
 {
-	url="/help.html";
+	url=webbase+"/help.html";
 }
 
 import web.view.7;
 
 if(string.len(CMDLine)>=8192) win.msgbox("Too long CMDLine, and this may cause Error. ","Warning");
 var view=web.view(mainForm,0,CMDLine);
-view.go("/web/index.html");
+view.go(webbase+"/web/index.html");
+//win.msgbox(webbase)
 
 mainForm.show();
 if(_ARGV["o"])
 {
 	//shit mountain code
-	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
+	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+webbase+"/web/index.html"+'">&#x4e3b&#x9875</a></body></html>';
 }
 else if(_ARGV["a"])
 {
@@ -114,9 +291,9 @@ else if(_ARGV["a"])
 	};
 	AndroidLine=string.replace(AndroidLine,".|:",ReplaceTable);
 	AndroidLine='echo "_'+" "+AndroidLine+'" > chrome-command-line';
-	view.html="<!doctype html><html><head></head><body><p>"+AndroidLine+'</p><a href="'+wsock.tcp.simpleHttpServer.startUrl()+'">&#x4e3b&#x9875</a></body></html>';
+	view.html="<!doctype html><html><head></head><body><p>"+AndroidLine+'</p><a href="'+webbase+"/web/index.html"+'">&#x4e3b&#x9875</a></body></html>';
 }
-else view.go(url);
+else view.go(webbase+url);
 return win.loopMessage();
 
 /* You may need: 
