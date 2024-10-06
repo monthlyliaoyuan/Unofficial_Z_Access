@@ -2,7 +2,11 @@ import win.ui;
 import win.ui.menu;
 /*DSG{{*/
 mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
-mainForm.add()
+mainForm.add(
+BTgo={cls="button";text="GO";left=684;top=2;right=757;bottom=23;dr=1;dt=1;z=3};
+EDurl={cls="edit";text="https://bu2021.xyz/";left=1;top=0;right=681;bottom=24;aw=1;dl=1;dr=1;dt=1;edge=1;z=2};
+mainWeb={cls="custom";text="自定义控件";left=0;top=28;right=753;bottom=467;db=1;dl=1;dr=1;dt=1;z=1}
+)
 /*}}*/
 
 var HostResolverLine="";
@@ -258,42 +262,66 @@ function MatchAutomatom(str) {
 	
 	import process.python;
 	import process.python.pip;
-
+	
 	process.python.pip.require("requests==2.32.3")
 	process.python.pip.require("ahocorasick-python==0.0.9")
 	process.python.execfile("/py/server.py")
-}
-
-if(_ARGV["g"]) url=_ARGV["g"];
-if(_ARGV["h"])
-{
-	url=webbase+"/help.html";
+	console.close()
 }
 
 import web.view.7;
 
 if(string.len(CMDLine)>=8192) win.msgbox("Too long CMDLine, and this may cause Error. ","Warning");
-var view=web.view(mainForm,0,CMDLine);
+var view=web.view(mainForm.mainWeb,0,CMDLine);
 view.go(webbase+"/web/index.html");
 //win.msgbox(webbase)
 
 mainForm.show();
+
+import fsys.file
+wrt=fsys.file("CMDline.txt","w")
+wrt.write(CMDLine)
+wrt.close()
+
+var AndroidLine=CMDLine;
+var ReplaceTable={
+	['"'] = "\"+'"'
+};
+AndroidLine=string.replace(AndroidLine,".|:",ReplaceTable);
+AndroidLine='echo "_'+" "+AndroidLine+'" > chrome-command-line';
+wrt=fsys.file("AndroidECHO.txt","w")
+wrt.write(AndroidLine)
+wrt.close()
+
 if(_ARGV["o"])
 {
-	//shit mountain code
-	view.html="<!doctype html><html><head></head><body><p>"+CMDLine+'</p><a href="'+webbase+"/web/index.html"+'">&#x4e3b&#x9875</a></body></html>';
+	url=webbase+"/CMDline.txt";
 }
 else if(_ARGV["a"])
 {
-	var AndroidLine=CMDLine;
-	var ReplaceTable={
-		['"'] = "\"+'"'
-	};
-	AndroidLine=string.replace(AndroidLine,".|:",ReplaceTable);
-	AndroidLine='echo "_'+" "+AndroidLine+'" > chrome-command-line';
-	view.html="<!doctype html><html><head></head><body><p>"+AndroidLine+'</p><a href="'+webbase+"/web/index.html"+'">&#x4e3b&#x9875</a></body></html>';
+	url=webbase+"/AndroidECHO.txt";
 }
-else view.go(webbase+url);
+else if(_ARGV["g"]) url=_ARGV["g"];
+else if(_ARGV["h"])
+{
+	url=webbase+"/help.html";
+}
+
+
+view.go(webbase+url);
+
+mainForm.BTgo.oncommand = function(id,event){
+	if(mainForm.EDurl.text=="index") mainForm.EDurl.text=webbase+"/web/index.html"
+	if(mainForm.EDurl.text=="proxypac") mainForm.EDurl.text=webbase+"/proxy.pac"
+	if(mainForm.EDurl.text=="cmdline") mainForm.EDurl.text=webbase+"/CMDline.txt"
+	if(mainForm.EDurl.text=="androidecho") mainForm.EDurl.text=webbase+"/AndroidECHO.txt"
+	view.go(mainForm.EDurl.text)
+}
+
+mainForm.EDurl.oncommand = function(id,event){
+	
+}
+
 return win.loopMessage();
 
 /* You may need: 
