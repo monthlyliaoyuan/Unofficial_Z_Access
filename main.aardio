@@ -12,7 +12,7 @@ mainWeb={cls="custom";text="自定义控件";left=0;top=28;right=753;bottom=467;
 var HostResolverLine="";
 var QUICLine="";
 var HostLine="";
-var CMDLine='--host-resolver-rules="MAP bu2021.xyz 104.16.187.17:443,MAP annas-archive.se 104.16.187.17:443,MAP zh.annas-archive.se 104.16.187.17:443,MAP z-library.rs 104.16.187.17:443,MAP zh.z-library.rs 104.16.187.17:443,MAP reader.z-library.rs 104.16.187.17:443,MAP dlz1.fcdn.sk 104.16.187.17:443,MAP cdn.croxy.network 104.16.187.17:443" -origin-to-force-quic-on=bu2021.xyz:443,annas-archive.se:443,zh.annas-archive.se:443,z-library.rs:443,zh.z-library.rs:443,reader.z-library.rs:443,dlz1.fcdn.sk:443,cdn.croxy.network:443 --host-rules="MAP www.croxy.network 143.244.204.138,MAP libgen.is 193.218.118.42,MAP libgen.rs 193.218.118.42,MAP zh.singlelogin.re 176.123.7.105,MAP singlelogin.re 176.123.7.105" --ignore-certificate-errors';
+var CMDLine="";
 //var CMDLine='--proxy-server=127.0.0.1:2500';
 import wsock.tcp.simpleHttpServer; 
 var webbase=wsock.tcp.simpleHttpServer.startUrl()
@@ -38,7 +38,7 @@ if(_ARGV["c"])
 	cfg.close();
 }
 
-if(_ARGV["d"]||_STUDIO_INVOKED)
+if(true)
 {
 	HostResolverLine="";
 	QUICLine="";
@@ -265,6 +265,7 @@ function MatchAutomatom(str) {
 	
 	process.python.pip.require("requests==2.32.3")
 	process.python.pip.require("ahocorasick-python==0.0.9")
+	process.python.pip.require("dnspython==2.3.0")
 	process.python.execfile("/py/server.py")
 	console.close()
 }

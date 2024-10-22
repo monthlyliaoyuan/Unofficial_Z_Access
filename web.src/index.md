@@ -1,6 +1,6 @@
 # 本版本发行宣言
 
-本版本是Zlibrary的非官方中国客户端，由某个初中生编写，其实十分简单。
+本版本是Zlibrary的非官方中国客户端，由某个初中生（现高一）编写，其实十分简单。
 
 #### 网页加载可能比较慢（国外服务器）。当前页面也是一个初始加载较慢时的默认页面。
 
@@ -108,9 +108,9 @@ DNS污染无法处理，有很多安全DNS。QUIC可能被处理，有一定漏�
 
 好的，到了这里。
 
-#### 请访问[Zlibrary](https://z-library.rs)
+#### 请访问[Zlibrary](https://zh.z-library.sk)
 
-#### Zlibrary[线路二](https://zh.singlelogin.re)
+#### Zlibrary[线路二](https://zh.singlelogin.re) （会被zlib重定向到线路一）
 
 或者自己去[搜](https://cn.bing.com)个网站玩玩
 
