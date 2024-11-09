@@ -1,1 +1,1 @@
-start Unofficial_Z_Access -a
+start Unofficial_Z_Access -d -p

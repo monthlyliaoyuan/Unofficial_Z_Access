@@ -55,9 +55,9 @@ api.odysee.com
 naked-api.na-backend.odysee.com
 
 104.19.113.157
-z-library.rs
-zh.z-library.rs
-reader.z-library.rs
+z-library.sk
+zh.z-library.sk
+reader5.z-library.sk
 dlz1.fcdn.sk
 cdn.croxy.network
 apkmirror.com
