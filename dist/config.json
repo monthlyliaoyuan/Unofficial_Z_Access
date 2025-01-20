@@ -5,6 +5,9 @@
     "num_TLS_fragment": 2,
     "my_socket_timeout": 180,
     "domains": {
+        "www.google.com": {
+            "IP": "35.190.247.149"
+        },
 		"freezhihu.org": {
             "IP": "104.19.112.120",
             "TCP_frag": 0,
