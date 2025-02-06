@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.55" ProductVersion="5.0.0.55" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+<project ver="10" name="Unofficial_Z_Access" libEmbed="true" icon="lib\icon.ico" ui="win" output="Unofficial_Z_Access.exe" CompanyName="MLM" FileDescription="Unofficial_Z_Access" LegalCopyright="Copyleft (C) People 2024" ProductName="Unofficial_Z_Access" InternalName="Unofficial_Z_Access" FileVersion="5.0.0.61" ProductVersion="5.0.0.61" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false"/>
 	<folder name="web" path="web" comment="web" local="true" embed="false" ignored="false"/>
@@ -11,4 +11,7 @@
 		<file name="server.py" path="py\server.py" comment="py\server.py"/>
 	</folder>
 	<file name="DOMAINconfig.txt" path="DOMAINconfig.txt" comment="DOMAINconfig.txt"/>
+	<file name="PAC.txt" path="PAC.txt" comment="PAC.txt"/>
+	<file name="customize.bat" path="customize.bat" comment="customize.bat"/>
+	<file name="config.json" path="config.json" comment="config.json"/>
 </project>

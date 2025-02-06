@@ -1,1 +1,0 @@
-start Unofficial_Z_Access -d %1 -a 

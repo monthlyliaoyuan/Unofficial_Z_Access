@@ -4,7 +4,7 @@ import win.ui.menu;
 mainForm = win.form(text="Unofficial_Z_Access";right=757;bottom=467)
 mainForm.add(
 BTgo={cls="button";text="GO";left=684;top=2;right=757;bottom=23;dr=1;dt=1;z=3};
-EDurl={cls="edit";text="https://bu2021.xyz/";left=1;top=0;right=681;bottom=24;aw=1;dl=1;dr=1;dt=1;edge=1;z=2};
+EDurl={cls="edit";text="https://www.google.com/ncr";left=1;top=0;right=681;bottom=24;aw=1;dl=1;dr=1;dt=1;edge=1;z=2};
 mainWeb={cls="custom";text="自定义控件";left=0;top=28;right=753;bottom=467;db=1;dl=1;dr=1;dt=1;z=1}
 )
 /*}}*/
@@ -229,16 +229,18 @@ function MatchAutomatom(str) {
 	fcfg=fsys.file("proxy.pac","w")
 	fcfg.write(VarietesofCode)
 	fcfg.write('let domains=[];\n')
-	for domain in cfg["domains"]
+	
+	for line in io.lines("pac.txt") 
 	{
 		fcfg.write('domains.push("')
-		fcfg.write(domain)
+		fcfg.write(line)
 		fcfg.write('");\n')
 	}
+	
 	fcfg.write('BuildAutomatom(domains);\n')
 	
 	VarietesofCode=/**function FindProxyForURL(url, host) {
-	if(MatchAutomatom(host).length)
+	if(MatchAutomatom("^"+host+"$").length)
  		return "PROXY 127.0.0.1:**/
 	fcfg.write(VarietesofCode);
 	fcfg.write(tostring(cfg["listen_PORT"]));
@@ -267,7 +269,10 @@ function MatchAutomatom(str) {
 	process.python.pip.require("ahocorasick-python==0.0.9")
 	process.python.pip.require("dnspython==2.3.0")
 	process.python.execfile("/py/server.py")
-	console.close()
+	if(!_STUDIO_INVOKED)
+	{
+		console.close()
+	}
 }
 
 import web.view.7;
@@ -313,10 +318,10 @@ view.go(webbase+url);
 
 mainForm.BTgo.oncommand = function(id,event){
 	if(mainForm.EDurl.text=="index") mainForm.EDurl.text=webbase+"/web/index.html"
-	if(mainForm.EDurl.text=="proxypac") mainForm.EDurl.text=webbase+"/proxy.pac"
-	if(mainForm.EDurl.text=="cmdline") mainForm.EDurl.text=webbase+"/CMDline.txt"
-	if(mainForm.EDurl.text=="androidecho") mainForm.EDurl.text=webbase+"/AndroidECHO.txt"
-	view.go(mainForm.EDurl.text)
+	else if(mainForm.EDurl.text=="proxypac") mainForm.EDurl.text=webbase+"/proxy.pac"
+	else if(mainForm.EDurl.text=="cmdline") mainForm.EDurl.text=webbase+"/CMDline.txt"
+	else if(mainForm.EDurl.text=="androidecho") mainForm.EDurl.text=webbase+"/AndroidECHO.txt"
+	else view.go(mainForm.EDurl.text)
 }
 
 mainForm.EDurl.oncommand = function(id,event){
