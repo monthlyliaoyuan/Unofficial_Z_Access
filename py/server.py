@@ -25,7 +25,7 @@ FAKE_ttl_auto_timeout = 1
 first_time_sleep = 0.1 # speed control , avoid server crash if huge number of users flooding
 accept_time_sleep = 0.01 # avoid server crash on flooding request -> max 100 sockets per second
 output_data=True
-
+datapath=Path()
 
 domain_settings={
     "null": {
@@ -70,11 +70,101 @@ lock_TTL_cache = threading.Lock()
 pac_domains = []
 pacfile="function genshin(){}"
 
+def ip_to_binary_prefix(ip_or_network):
+    try:
+        network = ipaddress.ip_network(ip_or_network, strict=False)
+        network_address = network.network_address
+        prefix_length = network.prefixlen
+        if isinstance(network_address, ipaddress.IPv4Address):
+            binary_network = bin(int(network_address))[2:].zfill(32)
+        elif isinstance(network_address, ipaddress.IPv6Address):
+            binary_network = bin(int(network_address))[2:].zfill(128)
+        binary_prefix = binary_network[:prefix_length]
+        return binary_prefix
+    except ValueError:
+        try:
+            ip = ipaddress.ip_address(ip_or_network)
+            if isinstance(ip, ipaddress.IPv4Address):
+                binary_ip = bin(int(ip))[2:].zfill(32)
+                binary_prefix = binary_ip[:32]
+            elif isinstance(ip, ipaddress.IPv6Address):
+                binary_ip = bin(int(ip))[2:].zfill(128)
+                binary_prefix = binary_ip[:128]
+            return binary_prefix
+        except ValueError:
+            raise ValueError(f"输入 {ip_or_network} 不是有效的 IP 地址或网络")
+
+class TrieNode:
+    def __init__(self):
+        self.children = [None, None]
+        self.val = None
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, prefix, value):
+        node = self.root
+        for bit in prefix:
+            index = int(bit)
+            if not node.children[index]:
+                node.children[index] = TrieNode()
+            node = node.children[index]
+        node.val = value
+
+    def search(self, prefix):
+        node = self.root
+        ans = None
+        for bit in prefix:
+            index = int(bit)
+            if node.val!=None:
+                ans=node.val
+            if not node.children[index]:
+                return ans
+            node = node.children[index]
+        if node.val!=None:
+                ans=node.val
+        return ans
+
+ipv4trie=Trie()
+ipv6trie=Trie()
+
 def set_ttl(sock,ttl):
     if sock.family==socket.AF_INET6:
         sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_UNICAST_HOPS, ttl)
     else:
         sock.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, ttl)
+
+def tryipredirect(ip):
+    ans=""
+    if ip.find(":")!=-1:
+        ans=ipv6trie.search(ip_to_binary_prefix(ip))
+        if ans==None:
+            return ip
+        else:
+            return ans
+    else:
+        ans=ipv4trie.search(ip_to_binary_prefix(ip))
+        if ans==None:
+            return ip
+        else:
+            return ans
+
+def IPredirect(ip):
+    while True:
+        ans=tryipredirect(ip)
+        if ans==ip:
+            break
+        elif ans[0]=="^":
+            print(f"IPredirect {ip} to {ans[1:]}")
+            ip=ans[1:]
+            break
+        else:
+            print(f"IPredirect {ip} to {ans}")
+            ip=ans
+
+    return ip
 
 def check_ttl(ip,port,ttl):
     # print(ip,port,ttl)
@@ -120,9 +210,7 @@ class GET_settings:
     def __init__(self):
         self.url = doh_server
         self.req = requests.session()              
-        self.knocker_proxy = {
-        'https': 'http://127.0.0.1:'+str(DOH_PORT)
-        }
+        self.knocker_proxy = {'https': f'http://127.0.0.1:{DOH_PORT}'}
         
 
 
@@ -192,8 +280,7 @@ class GET_settings:
             res={}
         
         if todns==True:
-            if res.get("IPtype")==None:
-                res["IPtype"]=IPtype
+            res.setdefault('IPtype', IPtype)
 
             if res.get("IP")==None:
                 if DNS_cache.get(domain)!=None:
@@ -201,14 +288,14 @@ class GET_settings:
                 else:
                     res["IP"]=self.query_DNS(domain,res)
                     if res["IP"]==None:
-                        print("Faild to resolve domain, try again with other IP type")
+                        print("Failed to resolve domain, try again with other IP type")
                         if res["IPtype"]=="ipv6":                        
                             res["IPtype"]="ipv4"
                         elif res["IPtype"]=="ipv4":
                             res["IPtype"]="ipv6"
                         res["IP"]=self.query_DNS(domain,res)
                     lock_DNS_cache.acquire()
-                    global cnt_dns_chg
+                    global cnt_dns_chg,dataPath
                     cnt_dns_chg=cnt_dns_chg+1
                     if cnt_dns_chg>=DNS_log_every:
                         cnt_dns_chg=0
@@ -216,36 +303,26 @@ class GET_settings:
                         with dataPath.joinpath("DNS_cache.json").open('w', encoding='UTF-8') as f:
                             json.dump(DNS_cache,f)
                     lock_DNS_cache.release()
+
+                res["IP"]=IPredirect(res.get("IP"))
                 # res["IP"]="127.0.0.1"
         else:
             res["IP"]=todns
-        if res.get("port")==None:
-            res["port"]=443
-            
-        if res.get("method")==None:
-            res["method"]=method
-            
-        if res.get("TCP_frag")==None:
-            res["TCP_frag"]=TCP_frag
-        if res.get("TCP_sleep")==None:
-            res["TCP_sleep"]=TCP_sleep
-        if res.get("num_TCP_fragment")==None:
-            res["num_TCP_fragment"]=num_TCP_fragment
-            
+        res.setdefault('port', 443)
+
+        res.setdefault('method', method)
+
+        res.setdefault('TCP_frag', TCP_frag)
+        res.setdefault('TCP_sleep', TCP_sleep)
+        res.setdefault('num_TCP_fragment', num_TCP_fragment)
+
         if res.get("method")=="TLSfrag":
-            if res.get("TLS_frag")==None:
-                res["TLS_frag"]=TLS_frag
-            if res.get("num_TLS_fragment")==None:
-                res["num_TLS_fragment"]=num_TLS_fragment
+            res.setdefault('TLS_frag', TLS_frag)
+            res.setdefault('num_TLS_fragment', num_TLS_fragment)
         elif res.get("method")=="FAKEdesync":
-            if res.get("FAKE_packet")==None:
-                res["FAKE_packet"]=FAKE_packet
-            else:
-                res["FAKE_packet"]=res["FAKE_packet"].encode(encoding='UTF-8')
-            if res.get("FAKE_ttl")==None:
-                res["FAKE_ttl"]=FAKE_ttl
-            if res.get("FAKE_sleep")==None:
-                res["FAKE_sleep"]=FAKE_sleep
+            res["FAKE_packet"] = FAKE_packet if res.get("FAKE_packet") is None else res["FAKE_packet"].encode(encoding='UTF-8')
+            res.setdefault('FAKE_ttl', FAKE_ttl)
+            res.setdefault('FAKE_sleep', FAKE_sleep)
             if res.get("FAKE_ttl")=="query":
                 print(f'FAKE TTL for {res.get("IP")} is {res.get("FAKE_ttl")}')
                 # print("Not implemented yet")
@@ -309,7 +386,7 @@ class ThreadedServer(object):
             server_name , server_port = self.extract_servername_and_port(data)      
         elif (data[:3]==b'GET' and str(data).split('\r\n')[0].split(' ')[1]=="/proxy.pac"):      
             # return pacfile
-            response_data = 'HTTP/1.1 200 OK\r\nContent-Type: application/x-ns-proxy-autoconfig\r\nContent-Length: '+str(len(pacfile))+'\r\n\r\n'+pacfile   
+            response_data = f'HTTP/1.1 200 OK\r\nContent-Type: application/x-ns-proxy-autoconfig\r\nContent-Length: {len(pacfile)}\r\n\r\n'+pacfile   
             
             client_socket.sendall(response_data.encode())
             client_socket.close()
@@ -354,7 +431,7 @@ class ThreadedServer(object):
             except ValueError:
                 # print('Not IP , its domain , try to resolve it')
                 settings=self.DoH.query(server_name)
-                if settings==None:                    
+                if settings==None:
                     settings={}
                 settings["sni"]=bytes(server_name,encoding="utf-8")
                 server_IP=settings.get("IP")
@@ -376,7 +453,7 @@ class ThreadedServer(object):
                 client_socket.sendall(response_data)
                 return server_socket, settings
             except socket.error:
-                print("@@@ "+server_IP+":"+str(server_port)+ " ==> filtered @@@")
+                print(f"@@@ {server_IP}:{server_port} ==> filtered @@@")
                 # Send HTTP ERR 502
                 response_data = b'HTTP/1.1 502 Bad Gateway (is IP filtered?)\r\nProxy-agent: MyProxy/1.0\r\n\r\n'
                 client_socket.sendall(response_data)
@@ -452,6 +529,12 @@ class ThreadedServer(object):
                             send_data_in_fragment(settings.get("sni"),settings,data,backend_sock)
                         elif settings.get("method")=="FAKEdesync":
                             send_data_with_fake(settings.get("sni"),settings,data,backend_sock)
+                        elif settings.get("method")=="DIRECT":
+                            backend_sock.sendall(data)
+                        elif settings.get("method")=="GFWlike":
+                            client_sock.close()
+                            backend_sock.close()
+                            return False
                         else:
                             print("unknown method")
                             backend_sock.sendall(data)
@@ -758,7 +841,7 @@ try:
         # kernel32._get_osfhandle.argtypes = [wintypes.INT]
         # kernel32._get_osfhandle.restype = wintypes.HANDLE
         pass
-    elif platform.system() == "Linux" or platform.system() == "Darwin" or platform.system() == "Android":
+    elif platform.system() in ('Linux', 'Darwin', 'Android'):
         import os
         import ctypes
         # 加载 libc 库
@@ -846,7 +929,7 @@ def send_fake_data(data_len,fake_data,fake_ttl,real_data,default_ttl,sock,FAKE_s
         );
         """
         import tempfile,uuid
-        file_path = tempfile.gettempdir()+"\\"+ str(uuid.uuid4()) + ".txt"
+        file_path = f'tempfile.gettempdir()\\{uuid.uuid4()}.txt'
         try:
             sock_file_descriptor = sock.fileno()
             print("sock file discriptor:",sock_file_descriptor)
@@ -925,7 +1008,7 @@ def send_fake_data(data_len,fake_data,fake_ttl,real_data,default_ttl,sock,FAKE_s
                 os.remove(file_path)
         except Exception as e:
             raise e
-    elif platform.system() == "Linux" or platform.system() == "Darwin" or platform.system() == "Android":
+    elif platform.system() in ('Linux', 'Darwin', 'Android'):
         try:
             sock_file_descriptor = sock.fileno()
             print("sock file discriptor:",sock_file_descriptor)
@@ -1083,12 +1166,12 @@ class Trie {
 
 let tr=null;
 function BuildAutomatom(arr) {
-	
+    
     tr=new Trie()
     arr.forEach(function (item) {
         tr.insert(item)
     })
-	
+    
     root=tr.root;
     root.fail=null;
     const queue=[root]
@@ -1109,7 +1192,7 @@ function BuildAutomatom(arr) {
 }
 
 function MatchAutomatom(str) {
-	let node=tr.root;
+    let node=tr.root;
     const data=[];
     for(let i=0;i<str.length;i++){
  
@@ -1136,21 +1219,21 @@ function MatchAutomatom(str) {
 
 """
     pacfile=pacfile+'let domains=[];\n'
-	
+    
     for line in pac_domains:
         pacfile=pacfile+'domains.push("'
         pacfile=pacfile+line
         pacfile=pacfile+'");\n'
-	
+    
     pacfile=pacfile+'BuildAutomatom(domains);\n'
-	
+    
     pacfile=pacfile+"""function FindProxyForURL(url, host) {
-	if(MatchAutomatom("^"+host+"$").length)
- 		return "PROXY 127.0.0.1:"""
-    pacfile=pacfile+str(listen_PORT)
+    if(MatchAutomatom("^"+host+"$").length)
+         return "PROXY 127.0.0.1:"""
+    pacfile+=str(listen_PORT)
     pacfile=pacfile+"""";
-	else
-		return "DIRECT";
+    else
+        return "DIRECT";
 }
 """
 
@@ -1158,7 +1241,8 @@ def start_server():
     global dataPath
     with dataPath.joinpath("config.json").open(mode='r', encoding='UTF-8') as f:
         global output_data,my_socket_timeout,FAKE_ttl_auto_timeout,listen_PORT,DOH_PORT,num_TCP_fragment,num_TLS_fragment,TCP_sleep,TCP_frag,TLS_frag,doh_server,domain_settings,DNS_log_every,TTL_log_every,IPtype,method,FAKE_packet,FAKE_ttl,FAKE_sleep,domain_settings_tree,pac_domains
-        print("Now listening at: 127.0.0.1:"+str(listen_PORT))
+        global ipv4trie,ipv6trie
+        print(f"Now listening at: 127.0.0.1:{listen_PORT}")
         config = json.load(f)
         output_data=config.get("output_data")
 
@@ -1182,12 +1266,18 @@ def start_server():
         FAKE_ttl=config.get("FAKE_ttl")
         FAKE_sleep=config.get("FAKE_sleep")
         pac_domains=config.get("pac_domains")
+        IPredirect=config.get("IPredirect")
         if FAKE_ttl=="auto":
             # temp code for auto fake_ttl
             FAKE_ttl=random.randint(10,60)
         generate_PAC()
         # print(set(domain_settings.keys()))
-        domain_settings_tree=ahocorasick.AhoCorasick(*domain_settings.keys())
+        domain_settings_tree= ahocorasick.AhoCorasick(*domain_settings.keys())
+        for key in IPredirect.keys():
+            if key.find(":")!=-1:
+                ipv6trie.insert(ip_to_binary_prefix(key),IPredirect[key])
+            else:
+                ipv4trie.insert(ip_to_binary_prefix(key),IPredirect[key])
 
     try:
         global DNS_cache

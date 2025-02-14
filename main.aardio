@@ -120,17 +120,20 @@ if(_ARGV["p"]||_STUDIO_INVOKED)
 	CMDLine=CMDLine+" --proxy-pac-url="+pacpath;
 	
 	import process.python;
-	import process.python.pip;
 	
-	//process.python.pip.require("requests==2.32.3")
-	//process.python.pip.require("ahocorasick-python==0.0.9")
-	//process.python.pip.require("dnspython==2.3.0")
+	if(_ARGV["p"]!="nopip")
+	{
+		import process.python.pip;
+		process.python.pip.require("requests==2.32.3")
+		process.python.pip.require("ahocorasick-python==0.0.9")
+		process.python.pip.require("dnspython==2.3.0")
+		if(!_STUDIO_INVOKED)
+		{
+			console.close()
+		}
+	}
 	
 	process.python.execfile("/py/server.py")
-	if(!_STUDIO_INVOKED)
-	{
-		console.close()
-	}
 }
 
 import web.view.7;
