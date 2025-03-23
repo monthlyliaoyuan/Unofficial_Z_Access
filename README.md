@@ -1,5 +1,7 @@
 # Zlib-ladder
 
+## 非重大问题，此项目不再维护
+
 Based on [aardio](https://www.aardio.com).
 
 + Development
