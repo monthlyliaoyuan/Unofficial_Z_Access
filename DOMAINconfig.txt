@@ -12,6 +12,7 @@ google.louiesun.workers.dev
 bbs.revolutionfront2023.top
 revolutionfront2023.top
 maoism.freeflarum.com
+libgen.gs
 
 76.76.21.61
 ^*.vercel.app
